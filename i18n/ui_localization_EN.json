@@ -60,7 +60,8 @@
       "grenade": "Grenade",
       "shield": "Shield",
       "repkit": "Repkit",
-      "heavy_weapon": "Heavies"
+      "heavy_weapon": "Heavies",
+      "loadout_manager": "Loadout"
     },
     "dialogs": {
       "success": "Success",
@@ -652,6 +653,67 @@
       "copied": "Copied to clipboard.",
       "no_valid_code": "No valid code",
       "gen_first": "Please generate a valid serial first."
+    }
+  },
+  "loadout_tab": {
+    "groups": {
+      "equipped": "Equipped Items",
+      "loadout": "Loadout Presets",
+      "skills": "Skill Configuration"
+    },
+    "slots": {
+      "slot_0": "Weapon 1",
+      "slot_1": "Weapon 2",
+      "slot_2": "Weapon 3",
+      "slot_3": "Weapon 4",
+      "slot_4": "Shield",
+      "slot_5": "Ordnance",
+      "slot_6": "Repkit",
+      "slot_7": "Enhancement",
+      "slot_8": "Class Mod"
+    },
+    "buttons": {
+      "read_save": "Read Current Save Config",
+      "save_loadout": "Save Loadout",
+      "load_loadout": "Load to Save"
+    },
+    "labels": {
+      "activated_skills": "Activated Skills",
+      "points_suffix": " pts",
+      "activated": "Active",
+      "config_name": "Config Name:",
+      "default_config_name": "Slot {slot}"
+    },
+    "placeholders": {
+      "empty_slot": "No saved config for this slot\nClick 'Read Current Save Config' to view equipped items",
+      "empty_slot_skills": "No saved config for this slot",
+      "open_save_first": "Open a save file and click 'Read Current Save Config'",
+      "no_equipped": "No equipment data in this config",
+      "no_skills": "No skill data in this config",
+      "no_data": "No skill data",
+      "no_activated": "No activated skills",
+      "no_items": "No items equipped",
+      "open_first": "Open a save file first",
+      "no_equipped_data": "No equipped item data found"
+    },
+    "notice": "Due to game limitations, equipment may not always overwrite completely. This is not a bug in the save editor — do not report it as such. Also, please do not equip items that are not in your backpack. Skills shown here include Specials and Vault skills. Missing skill icons are not a bug — the skill names stored in the game save may not match the actual names. There is no fix planned for this.",
+    "dialogs": {
+      "hint": "Notice",
+      "open_save_first": "Please open a save file first.",
+      "no_save_name": "Cannot determine save file name.",
+      "save_success": "Loadout {slot} saved to:\n{path}",
+      "save_fail": "Error saving loadout: {error}",
+      "success": "Success",
+      "save_fail_title": "Save Failed",
+      "no_saved_config": "Slot {slot} has no saved config.",
+      "confirm_overwrite_title": "Confirm Overwrite",
+      "confirm_overwrite_msg": "About to overwrite current save with Slot {slot} config.\n\nOverwrite scope:\n  • Equipped items\n  • Skill config (all graphs from ActionSkills to SDU)\n\nThis modifies in-memory save data.\nYou must click 'Save' in the main window to write to file.\n\nContinue?",
+      "partial_fail": "Partially Failed",
+      "equip_fail": "Equipment overwrite failed: {error}",
+      "skill_fail": "Skill overwrite failed: {error}",
+      "load_success": "Loadout {slot} loaded into memory.\nClick 'Save' in the main window to write to save file.",
+      "name_prompt_title": "Name This Loadout",
+      "name_prompt_msg": "Enter a name for this loadout (Cancel for default name):"
     }
   }
 }

@@ -60,7 +60,8 @@
       "grenade": "手雷",
       "shield": "护盾",
       "repkit": "修复套件",
-      "heavy_weapon": "重武器"
+      "heavy_weapon": "重武器",
+      "loadout_manager": "配置管理"
     },
     "dialogs": {
       "success": "成功",
@@ -652,6 +653,67 @@
       "copied": "已复制到剪贴板。",
       "no_valid_code": "无有效代码",
       "gen_first": "请先生成一个有效的序列号。"
+    }
+  },
+  "loadout_tab": {
+    "groups": {
+      "equipped": "已装备物品",
+      "loadout": "配置方案",
+      "skills": "技能配置"
+    },
+    "slots": {
+      "slot_0": "武器1",
+      "slot_1": "武器2",
+      "slot_2": "武器3",
+      "slot_3": "武器4",
+      "slot_4": "护盾",
+      "slot_5": "重武器/手雷",
+      "slot_6": "修复套件",
+      "slot_7": "强化模组",
+      "slot_8": "职业模组"
+    },
+    "buttons": {
+      "read_save": "读取当前存档配置",
+      "save_loadout": "保存配置",
+      "load_loadout": "加载配置到存档"
+    },
+    "labels": {
+      "activated_skills": "已激活技能",
+      "points_suffix": " 点",
+      "activated": "已激活",
+      "config_name": "配置名称:",
+      "default_config_name": "槽位 {slot}"
+    },
+    "placeholders": {
+      "empty_slot": "该槽位无已保存配置\n点击「读取当前存档配置」查看当前装备",
+      "empty_slot_skills": "该槽位无已保存配置",
+      "open_save_first": "请先打开存档并点击「读取当前存档配置」",
+      "no_equipped": "配置中无装备数据",
+      "no_skills": "配置中无技能数据",
+      "no_data": "暂无技能数据",
+      "no_activated": "暂无已激活技能",
+      "no_items": "当前没有装备任何物品",
+      "open_first": "请先打开存档",
+      "no_equipped_data": "未找到已装备物品数据"
+    },
+    "notice": "当前因游戏原因，可能会随机导致装备无法完整覆盖，这不是存档编辑器的问题，切勿作为bug进行报告，也请不要装备不在背包内的物品。此处显示的技能包含特殊和宝库，技能名称缺失图标不是bug，而是游戏存档内的技能名称与实际的并不相符导致的，暂未有相关的修复计划。",
+    "dialogs": {
+      "hint": "提示",
+      "open_save_first": "请先打开存档文件。",
+      "no_save_name": "无法确定存档名称。",
+      "save_success": "配置 {slot} 已保存至:\n{path}",
+      "save_fail": "保存配置出错: {error}",
+      "success": "成功",
+      "save_fail_title": "保存失败",
+      "no_saved_config": "槽位 {slot} 无已保存配置。",
+      "confirm_overwrite_title": "确认覆写",
+      "confirm_overwrite_msg": "即将将槽位 {slot} 的配置覆写到当前存档。\n\n覆写范围：\n  • 已装备物品\n  • 技能配置（ActionSkills 到 SDU 之前的全部 Graphs）\n\n此操作会修改内存中的存档数据，\n需要在主界面点击「保存」才会写入文件。\n\n是否继续？",
+      "partial_fail": "部分失败",
+      "equip_fail": "装备覆写失败: {error}",
+      "skill_fail": "技能覆写失败: {error}",
+      "load_success": "配置 {slot} 已加载到内存。\n请点击主界面「保存」按钮写入存档。",
+      "name_prompt_title": "为配置命名",
+      "name_prompt_msg": "请输入当前配置的名称（取消则使用默认名称）:"
     }
   }
 }

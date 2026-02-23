@@ -24,7 +24,8 @@ from tabs import (
     QtCharacterTab, QtItemsTab, QtWeaponGeneratorTab, QtConverterTab,
     QtClassModEditorTab, QtHeavyWeaponEditorTab, QtShieldEditorTab,
     QtGrenadeEditorTab, QtRepkitEditorTab, QtYamlEditorTab,
-    QtEnhancementEditorTab, WeaponEditorTab as QtWeaponEditorTab
+    QtEnhancementEditorTab, WeaponEditorTab as QtWeaponEditorTab,
+    QtLoadoutManagerTab
 )
 
 
@@ -573,6 +574,9 @@ class MainWindow(QMainWindow):
         self.heavy_weapon_tab.add_to_backpack_requested.connect(self.handle_add_to_backpack)
         self.add_tab(self.heavy_weapon_tab, self.loc['tabs']['heavy_weapon'], "🚀")
 
+        self.loadout_manager_tab = QtLoadoutManagerTab()
+        self.add_tab(self.loadout_manager_tab, self.loc['tabs'].get('loadout_manager', '配置管理'), "📋")
+
 
         if self.nav_button_group.buttons():
             self.nav_button_group.buttons()[0].click()
@@ -777,6 +781,10 @@ class MainWindow(QMainWindow):
                 self.log("  - Weapon editor tab refreshed.")
             self.yaml_editor_tab.set_yaml_text(self.controller.get_yaml_string())
             self.log("  - YAML editor tab refreshed.")
+            if hasattr(self, 'loadout_manager_tab'):
+                save_path = str(self.controller.save_path) if self.controller.save_path else None
+                self.loadout_manager_tab.set_data(self.controller.yaml_obj, save_path)
+                self.log("  - Loadout manager tab data set.")
         except Exception as e:
             self.log(f"CRITICAL: An exception occurred during refresh_all_tabs: {e}", force_popup=True)
         self.log("Main window: Finished refreshing all tabs.")
@@ -1001,7 +1009,8 @@ class MainWindow(QMainWindow):
             self.grenade_tab, self.shield_tab, self.repkit_tab, self.heavy_weapon_tab, 
             self.weapon_editor_tab, self.weapon_generator_tab,
             self.character_tab, self.selector_page, self.items_tab, self.converter_tab,
-            self.yaml_editor_tab, self.class_mod_tab, self.enhancement_tab
+            self.yaml_editor_tab, self.class_mod_tab, self.enhancement_tab,
+            self.loadout_manager_tab
         ]
         for tab in tabs_to_update:
             if hasattr(tab, 'update_language'):

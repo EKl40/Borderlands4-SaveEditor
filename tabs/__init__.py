@@ -13,6 +13,7 @@ from .qt_grenade_editor_tab import QtGrenadeEditorTab
 from .qt_shield_editor_tab import QtShieldEditorTab
 from .qt_repkit_editor_tab import QtRepkitEditorTab
 from .qt_heavy_weapon_editor_tab import QtHeavyWeaponEditorTab
+from .qt_loadout_manager_tab import QtLoadoutManagerTab
 
 __all__ = [
     'QtCharacterTab',
@@ -27,4 +28,5 @@ __all__ = [
     'QtShieldEditorTab',
     'QtRepkitEditorTab',
     'QtHeavyWeaponEditorTab',
+    'QtLoadoutManagerTab',
 ]
