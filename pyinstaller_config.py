@@ -108,6 +108,7 @@ a = Analysis(
         'tabs.qt_shield_editor_tab',
         'tabs.qt_repkit_editor_tab',
         'tabs.qt_heavy_weapon_editor_tab',
+        'tabs.qt_loadout_manager_tab',
         'bl4_decoder_py',
     ],
     hookspath=[],
