@@ -29,7 +29,7 @@
     }
   },
   "main_window": {
-    "window_title": "无主之地4 存档编辑器 V{version}",
+    "window_title": "无主之地4 存档编辑器",
     "subtitle": "By SuperExboom - 免费软件，如果你付费了那你就被骗了",
     "header": {
       "title": "无主之地4 存档编辑器",
@@ -37,7 +37,8 @@
       "save": "保存",
       "save_as": "另存为...",
       "theme_dark": "切换到深色模式",
-      "theme_light": "切换到浅色模式"
+      "theme_light": "切换到浅色模式",
+      "change_bg": "更换背景"
     },
     "menu": {
       "open_selector": "打开存档选择器",
@@ -69,6 +70,10 @@
       "warning": "警告",
       "critical": "严重错误",
       "cancel": "取消",
+      "change_bg_title": "选择背景图片",
+      "image_files": "图片文件",
+      "clear_bg_prompt": "是否要清除自定义背景或选择新背景？\nYes: 清除\nNo: 选择新背景\nCancel: 取消",
+      "clear_bg_title": "清除背景",
       "decrypt_success": "存档文件解密成功！\n平台: {platform}\n备份已创建: {backup_name}",
       "decrypt_failed": "解密失败",
       "decrypt_failed_msg": "无法使用ID '{user_id}' 解密。\n({error})\n\n请输入正确的64位ID:",

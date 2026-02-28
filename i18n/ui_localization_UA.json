@@ -29,7 +29,7 @@
     }
   },
   "main_window": {
-    "window_title": "Borderlands 4 Save Editor V{version}",
+    "window_title": "Borderlands 4 Save Editor",
     "subtitle": "Автор: SuperExboom - Безкоштовне ПЗ, якщо ви заплатили за це, вас обдурили",
     "header": {
       "title": "Редактор збережень Borderlands 4",
@@ -37,7 +37,8 @@
       "save": "Зберегти",
       "save_as": "Зберегти як...",
       "theme_dark": "Переключити на темну тему",
-      "theme_light": "Переключити на світлу тему"
+      "theme_light": "Переключити на світлу тему",
+      "change_bg": "Змінити ФОН"
     },
     "menu": {
       "open_selector": "Вибір збереження",
@@ -69,6 +70,10 @@
       "warning": "Попередження",
       "critical": "Критична помилка",
       "cancel": "Скасувати",
+      "change_bg_title": "Виберіть Фонове Зображення",
+      "image_files": "Файли Зображень",
+      "clear_bg_prompt": "Хочете очистити користувацький фон або вибрати новий?\nYes: Очистити\nNo: Вибрати Новий\nCancel: Скасувати",
+      "clear_bg_title": "Очистити Фон",
       "decrypt_success": "Збереження розшифровано!\nПлатформа: {platform}\nРезервну копію створено: {backup_name}",
       "decrypt_failed": "Помилка розшифровки",
       "decrypt_failed_msg": "Не вдалося розшифрувати з ID '{user_id}'.\n({error})\n\nБудь ласка, введіть правильний 64-бітний ID:",

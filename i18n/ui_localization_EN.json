@@ -29,7 +29,7 @@
     }
   },
   "main_window": {
-    "window_title": "Borderlands 4 Save Editor V{version}",
+    "window_title": "Borderlands 4 Save Editor",
     "subtitle": "By SuperExboom - Free software, if you paid for this you got scammed",
     "header": {
       "title": "Borderlands 4 Save Editor",
@@ -37,7 +37,8 @@
       "save": "Save",
       "save_as": "Save As...",
       "theme_dark": "Switch to Dark Mode",
-      "theme_light": "Switch to Light Mode"
+      "theme_light": "Switch to Light Mode",
+      "change_bg": "Change Background"
     },
     "menu": {
       "open_selector": "Open Save Selector",
@@ -69,6 +70,10 @@
       "warning": "Warning",
       "critical": "Critical Error",
       "cancel": "Cancel",
+      "change_bg_title": "Select Background Image",
+      "image_files": "Image Files",
+      "clear_bg_prompt": "Do you want to clear the custom background or select a new one?\nYes: Clear\nNo: Select New\nCancel: Do Nothing",
+      "clear_bg_title": "Clear Background",
       "decrypt_success": "Save file decrypted successfully!\nPlatform: {platform}\nBackup created: {backup_name}",
       "decrypt_failed": "Decryption Failed",
       "decrypt_failed_msg": "Unable to decrypt using ID '{user_id}'.\n({error})\n\nPlease enter the correct 64-bit ID:",

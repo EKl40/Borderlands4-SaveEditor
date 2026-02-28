@@ -242,6 +242,29 @@ class QtLoadoutManagerTab(QWidget):
             key = (skill.get('class_ID', ''), skill.get('skill_name_EN', ''))
             self.skill_lookup[key] = skill
 
+        # 加载技能名称映射表
+        self._load_skill_name_mapping()
+
+    def _load_skill_name_mapping(self):
+        """加载 loadout/skill_name_mapping.csv 映射表 (raw_display_name -> skill_name_EN)"""
+        self.skill_name_mapping = {}
+        try:
+            mapping_path = _get_editor_root() / "loadout" / "skill_name_mapping.csv"
+            if mapping_path.exists():
+                with open(mapping_path, 'r', encoding='utf-8-sig') as f:
+                    reader = csv.DictReader(f)
+                    for row in reader:
+                        raw_name = row.get('raw_display_name', '').strip()
+                        mapped_name = row.get('skill_name_EN', '').strip()
+                        if raw_name and mapped_name:
+                            self.skill_name_mapping[raw_name] = mapped_name
+                print(f"Loadout: 已加载 {len(self.skill_name_mapping)} 条技能名称映射")
+            else:
+                print(f"Loadout: 映射表不存在 {mapping_path}")
+        except Exception as e:
+            print(f"Loadout: 加载技能名称映射表失败: {e}")
+            self.skill_name_mapping = {}
+
     # ══════════════════════════════════════════════════════════════════
     # 角色/技能辅助
     # ══════════════════════════════════════════════════════════════════
@@ -279,32 +302,54 @@ class QtLoadoutManagerTab(QWidget):
 
     def _get_skill_display_info(self, skill_name_en: str, class_name: str,
                                 class_id: str) -> tuple:
-        """查找技能的本地化名和图标。返回 (display_name, icon)。"""
-        display_name = skill_name_en
+        """查找技能的本地化名和图标。返回 (display_name, icon)。
+        
+        流程：先用映射表将 raw_display_name -> skill_name_EN，
+        然后用映射后的名称去 Skills.csv 查找。
+        """
+        # Step 1: 使用映射表转换名称 (raw_display_name -> skill_name_EN)
+        original_name = skill_name_en
+        mapped_name = self.skill_name_mapping.get(skill_name_en, skill_name_en)
+        if mapped_name != original_name:
+            print(f"Loadout: 技能名称映射 '{original_name}' -> '{mapped_name}'")
+        
+        # 使用映射后的名称进行查找
+        lookup_name = mapped_name
+        display_name = lookup_name
         icon = QIcon()
-        skill_row = self.skill_lookup.get((class_id, skill_name_en))
+        
+        # Step 2: 在 Skills.csv 中查找
+        skill_row = self.skill_lookup.get((class_id, lookup_name))
         if not skill_row:
             candidates = self.skills_by_class.get(class_id, [])
+            # 精确匹配（不区分大小写）
             for row in candidates:
                 en_name = row.get('skill_name_EN', '')
-                if en_name.lower() == skill_name_en.lower():
+                if en_name.lower() == lookup_name.lower():
                     skill_row = row
                     break
+            # 模糊匹配
             if not skill_row:
                 for row in candidates:
                     en_name = row.get('skill_name_EN', '')
-                    if (skill_name_en.lower() in en_name.lower()
-                            or en_name.lower() in skill_name_en.lower()):
+                    if (lookup_name.lower() in en_name.lower()
+                            or en_name.lower() in lookup_name.lower()):
                         skill_row = row
                         break
+        
+        # Step 3: 获取显示名称和图标
         if skill_row:
-            skill_name_en_canonical = skill_row.get('skill_name_EN', skill_name_en)
+            skill_name_en_canonical = skill_row.get('skill_name_EN', lookup_name)
             zh_name = skill_row.get('skill_name_ZH', '')
             if self.current_lang == 'zh-CN' and zh_name:
                 display_name = zh_name
             else:
                 display_name = skill_name_en_canonical
             icon = self.get_skill_icon(skill_name_en_canonical, class_name)
+        else:
+            # 未找到匹配，显示原始名称（或映射后的名称）
+            display_name = lookup_name
+            
         return display_name, icon
 
     # ══════════════════════════════════════════════════════════════════
@@ -428,14 +473,6 @@ class QtLoadoutManagerTab(QWidget):
 
     def _build_equipped_panel(self) -> QWidget:
         self.equipped_group = QGroupBox(self._t('groups', 'equipped'))
-        self.equipped_group.setStyleSheet("""
-            QGroupBox {
-                font-size: 14px; font-weight: bold; color: #e0e0e0;
-                border: 1px solid rgba(255,255,255,0.08);
-                border-radius: 8px; margin-top: 10px; padding-top: 20px;
-            }
-            QGroupBox::title { subcontrol-origin: margin; left: 12px; padding: 0 6px; }
-        """)
         layout = QVBoxLayout(self.equipped_group)
         layout.setSpacing(4)
         layout.setContentsMargins(10, 15, 10, 10)
@@ -443,11 +480,11 @@ class QtLoadoutManagerTab(QWidget):
         self.read_save_button = QPushButton(self._t('buttons', 'read_save'))
         self.read_save_button.setStyleSheet("""
             QPushButton {
-                background-color: rgba(76, 175, 80, 0.3); color: #a5d6a7;
+                background-color: rgba(76, 175, 80, 0.3);
                 border: 1px solid rgba(76, 175, 80, 0.5); border-radius: 6px;
                 padding: 8px 16px; font-size: 13px; font-weight: bold;
             }
-            QPushButton:hover { background-color: rgba(76, 175, 80, 0.5); color: #c8e6c9; }
+            QPushButton:hover { background-color: rgba(76, 175, 80, 0.5); color: white; }
         """)
         self.read_save_button.clicked.connect(self._on_read_save_clicked)
         layout.addWidget(self.read_save_button)
@@ -477,14 +514,6 @@ class QtLoadoutManagerTab(QWidget):
         layout.setSpacing(10)
 
         self.loadout_group = QGroupBox(self._t('groups', 'loadout'))
-        self.loadout_group.setStyleSheet("""
-            QGroupBox {
-                font-size: 14px; font-weight: bold; color: #e0e0e0;
-                border: 1px solid rgba(255,255,255,0.08);
-                border-radius: 8px; margin-top: 10px; padding-top: 20px;
-            }
-            QGroupBox::title { subcontrol-origin: margin; left: 12px; padding: 0 6px; }
-        """)
         loadout_layout = QVBoxLayout(self.loadout_group)
         loadout_layout.setSpacing(8)
 
@@ -504,7 +533,7 @@ class QtLoadoutManagerTab(QWidget):
         # Config name label (shows name of the saved config next to slots)
         self.config_name_label = QLabel("")
         self.config_name_label.setStyleSheet(
-            "color: #90caf9; font-size: 12px; font-style: italic; padding-left: 8px;")
+            "font-size: 12px; font-style: italic; padding-left: 8px;")
         btn_row.addWidget(self.config_name_label)
 
         self.loadout_buttons[0].setChecked(True)
@@ -529,14 +558,6 @@ class QtLoadoutManagerTab(QWidget):
 
         # 技能区
         self.skill_group = QGroupBox(self._t('groups', 'skills'))
-        self.skill_group.setStyleSheet("""
-            QGroupBox {
-                font-size: 14px; font-weight: bold; color: #e0e0e0;
-                border: 1px solid rgba(255,255,255,0.08);
-                border-radius: 8px; margin-top: 10px; padding-top: 20px;
-            }
-            QGroupBox::title { subcontrol-origin: margin; left: 12px; padding: 0 6px; }
-        """)
         skill_outer = QVBoxLayout(self.skill_group)
 
         # Notification bar
@@ -547,7 +568,7 @@ class QtLoadoutManagerTab(QWidget):
                 background-color: rgba(255, 152, 0, 0.12);
                 border: 1px solid rgba(255, 152, 0, 0.35);
                 border-radius: 6px;
-                color: #ffb74d;
+                color: #e65100;
                 font-size: 11px;
                 padding: 8px 10px;
                 margin-bottom: 4px;
@@ -592,22 +613,22 @@ class QtLoadoutManagerTab(QWidget):
         if has_saved:
             return """
                 QPushButton {
-                    background-color: rgba(76, 175, 80, 0.15); color: #a5d6a7;
+                    background-color: rgba(76, 175, 80, 0.15);
                     border: 1px solid rgba(76, 175, 80, 0.5); border-radius: 6px;
                     font-size: 14px;
                 }
                 QPushButton:hover {
-                    background-color: rgba(76, 175, 80, 0.3); color: #c8e6c9;
+                    background-color: rgba(76, 175, 80, 0.3);
                 }
             """
         return """
             QPushButton {
-                background-color: rgba(255,255,255,0.06); color: #aaa;
-                border: 1px solid rgba(255,255,255,0.12); border-radius: 6px;
+                background-color: rgba(128,128,128,0.06);
+                border: 1px solid rgba(128,128,128,0.12); border-radius: 6px;
                 font-size: 14px;
             }
             QPushButton:hover {
-                background-color: rgba(255,255,255,0.12); color: #ddd;
+                background-color: rgba(128,128,128,0.12);
             }
         """
 
@@ -615,7 +636,7 @@ class QtLoadoutManagerTab(QWidget):
     def _action_btn_style(color: str) -> str:
         return f"""
             QPushButton {{
-                background-color: rgba({_hex_to_rgb(color)}, 0.25); color: #e0e0e0;
+                background-color: rgba({_hex_to_rgb(color)}, 0.25);
                 border: 1px solid rgba({_hex_to_rgb(color)}, 0.5); border-radius: 6px;
                 padding: 7px 18px; font-size: 13px; font-weight: bold;
             }}
@@ -818,7 +839,7 @@ class QtLoadoutManagerTab(QWidget):
         found_any = False
         cat_label = QLabel(self._t('labels', 'activated_skills'))
         cat_label.setStyleSheet("""
-            color: #42a5f5; font-size: 13px; font-weight: bold;
+            font-size: 13px; font-weight: bold;
             padding: 6px 0 2px 0;
         """)
         self.skills_layout.addWidget(cat_label)
@@ -886,8 +907,8 @@ class QtLoadoutManagerTab(QWidget):
         row = QFrame()
         row.setStyleSheet("""
             QFrame {
-                background-color: rgba(255,255,255,0.03);
-                border: 1px solid rgba(255,255,255,0.06);
+                background-color: rgba(128,128,128,0.05);
+                border: 1px solid rgba(128,128,128,0.1);
                 border-radius: 6px; padding: 4px;
             }
         """)
@@ -898,12 +919,12 @@ class QtLoadoutManagerTab(QWidget):
         header_layout = QHBoxLayout()
         header_layout.setSpacing(8)
         slot_label = QLabel(slot_name)
-        slot_label.setStyleSheet("color: #90caf9; font-size: 12px; font-weight: bold;")
+        slot_label.setStyleSheet("font-size: 12px; font-weight: bold;")
         slot_label.setFixedWidth(90)
         slot_label.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
         header_layout.addWidget(slot_label)
         name_label = QLabel(item_name)
-        name_label.setStyleSheet("color: #e0e0e0; font-size: 12px;")
+        name_label.setStyleSheet("font-size: 12px;")
         header_layout.addWidget(name_label)
         header_layout.addStretch()
         row_layout.addLayout(header_layout)
@@ -912,8 +933,7 @@ class QtLoadoutManagerTab(QWidget):
         serial_edit.setReadOnly(True)
         serial_edit.setStyleSheet("""
             QLineEdit {
-                background-color: rgba(0,0,0,0.2); color: #999;
-                border: 1px solid rgba(255,255,255,0.05); border-radius: 4px;
+                border-radius: 4px;
                 padding: 3px 6px; font-size: 11px; font-family: Consolas, monospace;
             }
         """)
@@ -929,8 +949,8 @@ class QtLoadoutManagerTab(QWidget):
         row.setFixedHeight(36)
         row.setStyleSheet("""
             QFrame {
-                background-color: rgba(255,255,255,0.03);
-                border: 1px solid rgba(255,255,255,0.04); border-radius: 5px;
+                background-color: rgba(128,128,128,0.05);
+                border: 1px solid rgba(128,128,128,0.1); border-radius: 5px;
             }
         """)
         row_layout = QHBoxLayout(row)
@@ -945,7 +965,7 @@ class QtLoadoutManagerTab(QWidget):
             row_layout.addWidget(icon_label)
 
         name_label = QLabel(name)
-        name_label.setStyleSheet("color: #e0e0e0; font-size: 12px;")
+        name_label.setStyleSheet("font-size: 12px;")
         row_layout.addWidget(name_label)
         row_layout.addStretch()
 

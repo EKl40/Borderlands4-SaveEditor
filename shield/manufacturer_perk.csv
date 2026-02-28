@@ -29,8 +29,10 @@ Manufacturer ID,Part_ID,Part_type,Stat,Description
 287,6,Legendary Perk,护盾小子,最后一个护甲段破裂时生成护盾小子
 287,7,Rarity,Legendary,首要皮肤
 287,8,Rarity,Legendary,时间尊者新护盾皮肤
-287,9,Legendary Perk,比尼努一装备后，获得+7436最大生命值，每秒恢复+372生命值，同时受到的伤害降低33%
+287,9,Legendary Perk,比尼努,装备后，获得+7436最大生命值，每秒恢复+372生命值，同时受到的伤害降低33%
 287,10,Model,/,
+287,11,Rarity,Legendary,跳房子皮肤
+287,12,Legendary Perk,震荡,当护甲段破裂时，生成一个奇点
 293,1,Legendary Perk,玻璃,受到伤害时，获得一层决心，每有一层决心，所受伤害减少2%，最多叠加25层。能量护盾破裂时将释放星爆，造成7436伤害，每有一层决心，该伤害提升+20%
 293,2,Legendary Perk,直流电,通过落地猛击切换此效果开关。启用后，会持续消耗护盾并获得+40%加成电击伤害，但受到的伤害会直接穿透护盾
 293,3,Rarity,Legendary,变形细胞皮肤
@@ -48,10 +50,10 @@ Manufacturer ID,Part_ID,Part_type,Stat,Description
 300,5,Rarity,Legendary,金皮肤
 300,6,Legendary Perk,短路,能量护盾未满时，会周期性电击附近敌人
 300,7,Rarity,Legendary,电光护盾皮肤
-300,8,Legendary Perk,超强护盾吞噬者一启用能量护盾时，被击中的敌人有12%几率掉落超强护盾。如拥有超强护盾，获得+25%电击伤害
+300,8,Legendary Perk,超强护盾吞噬者,启用能量护盾时，被击中的敌人有12%几率掉落超强护盾。如拥有超强护盾，获得+25%电击伤害
 300,9,Rarity,Legendary,通电晚餐皮肤
 300,10,Model,/,
-300,11,Legendary Perk,后门一能量护盾破裂时，对3名敌人触发星爆并造成5577伤害
+300,11,Legendary Perk,后门,能量护盾破裂时，对3名敌人触发星爆并造成5577伤害
 300,12,Rarity,Legendary,防火线皮肤
 306,1,Rarity,Common,
 306,2,Rarity,Uncommon,

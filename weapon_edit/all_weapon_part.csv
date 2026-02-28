@@ -76,6 +76,9 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 13,Daedalus,Assault Rifle,79,Manufacturer Part,DAD_AR.part_shield_ricochet,亥伯龙跳弹护盾
 13,Daedalus,Assault Rifle,80,Manufacturer Part,DAD_AR.part_shield_ammo,亥伯龙吸收护盾
 13,Daedalus,Assault Rifle,81,Manufacturer Part,DAD_AR.part_shield_amp,亥伯龙增强护盾
+13,Daedalus,Assault Rifle,82,Barrel,DAD_AR.part_barrel_01_Mercredi,"星期三,892伤害,78%精准度,6.8/s射速"
+13,Daedalus,Assault Rifle,89,Underbarrel,DAD_AR.part_underbarrel_04_atlas_ball_Mercredi,阿特拉斯追踪手雷，仅限星期三
+13,Daedalus,Assault Rifle,90,Underbarrel,DAD_AR.part_underbarrel_04_atlas_Mercredi,阿特拉斯追踪飞镖，仅限星期三
 2,Daedalus,Pistol,1,Barrel,DAD_PS.part_barrel_01_zipgun,"拉链,692伤害,75%精准度,6.2/s射速"
 2,Daedalus,Pistol,2,Body,DAD_PS.part_body,"无属性变化，固有部件"
 2,Daedalus,Pistol,3,Body Accessory,DAD_PS.part_body_a,-装填时间
@@ -448,6 +451,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 3,Jakobs,Pistol,75,Barrel,JAK_PS.part_barrel_02_kingsgambit,"国王的决策,1874伤害,69%精准度,7.5/s射速"
 3,Jakobs,Pistol,77,Barrel,JAK_PS.part_barrel_01_phantom_flame,"幻影火焰,1785伤害,43%精准度,9.0/s射速"
 3,Jakobs,Pistol,80,Barrel,JAK_PS.part_barrel_01_seventh_sense,"第七感,1785伤害,67%精准度,9.0/s射速"
+3,Jakobs,Pistol,82,Barrel,JAK_PS.part_barrel_shalashaska,"沙拉沙斯卡,2275伤害,82%精准度,7.5/s射速,+20%暴击伤害"
 9,Jakobs,Shotgun,1,Stat Modifier,JAK_SG.part_body_ele_rainbowvomit_cryo_fire_shock,彩色喷雾-冰冻，点燃，点击
 9,Jakobs,Shotgun,2,Body,JAK_SG.part_body,"无属性变化，固有部件"
 9,Jakobs,Shotgun,3,Body Accessory,JAK_SG.part_body_a,-装填时间
@@ -537,6 +541,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 9,Jakobs,Shotgun,92,Magazine,JAK_SG.part_mag_02_b02,"5.5s装填时间,6弹容,2/每发"
 9,Jakobs,Shotgun,93,Magazine,JAK_SG.part_mag_01_b01,"1.7s装填时间,1/每发"
 9,Jakobs,Shotgun,94,Magazine,JAK_SG.part_mag_01_b02,"1.7s装填时间,2弹容,2/每发"
+9,Jakobs,Shotgun,99,Barrel,JAK_SG.part_barrel_Doeshot,"一命呼呼,1543x2伤害,82%精准度,2.7/s射速,+20%暴击伤害"
 24,Jakobs,Sniper,2,Body,JAK_SR.part_body,"无属性变化，固有部件"
 24,Jakobs,Sniper,3,Body Accessory,JAK_SR.part_body_a,-装填时间
 24,Jakobs,Sniper,4,Body Accessory,JAK_SR.part_body_b,-装填时间
@@ -757,6 +762,8 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 21,Maliwan,SMG,76,Manufacturer Part,MAL_SM.part_barrel_licensed_ted_mirv,"泰迪尔分裂式,无可见属性变化"
 21,Maliwan,SMG,77,Manufacturer Part,MAL_SM.part_barrel_licensed_ted_combo,"泰迪尔组合,无可见属性变化"
 21,Maliwan,SMG,78,Manufacturer Part,MAL_SM.part_barrel_licensed_hyp,"亥伯龙护盾可见附件,无可见属性变化"
+21,Maliwan,SMG,79,Manufacturer Part,MAL_SM.part_mag_torgue_normal_songbird,"托格冲击弹匣,仅限折翼"
+21,Maliwan,SMG,80,Barrel,MAL_SM.part_barrel_02_songbird,"折翼,290x5伤害,55%精准度,8.0/s射速"
 25,Maliwan,Sniper,2,Body,MAL_SR.part_body,"无属性变化，固有部件"
 25,Maliwan,Sniper,3,Body Accessory,MAL_SR.part_body_a,-装填时间
 25,Maliwan,Sniper,4,Body Accessory,MAL_SR.part_body_b,+弹夹容量
@@ -833,6 +840,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 25,Maliwan,Sniper,77,Manufacturer Part,MAL_SR.part_barrel_licensed_ted_combo,"泰迪尔组合,无可见属性变化"
 25,Maliwan,Sniper,78,Manufacturer Part,MAL_SR.part_barrel_licensed_hyp,"亥伯龙护盾可见附件,无可见属性变化"
 25,Maliwan,Sniper,79,Barrel,MAL_SR.part_barrel_01_asher,"亚瑟的崛起,1522伤害,89%精准度,6.6/s射速"
+25,Maliwan,Sniper,81,Barrel,MAL_SR.part_barrel_02_conflux,"汇流,2342伤害,87%精准度,2.0/s射速,+50%暴击伤害"
 15,Order,Assault Rifle,1,Scope,ORD_AR.part_scope_02_lens_02_gmr,瞄准镜 +++放大倍率
 15,Order,Assault Rifle,2,Barrel,ORD_AR.part_barrel_02_gmr,"G.M.R.,1785伤害,65%精准度,4.0/s射速"
 15,Order,Assault Rifle,3,Body Accessory,ORD_AR.part_body_a,-装填时间
@@ -981,6 +989,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 4,Order,Pistol,78,Magazine,ORD_PS.part_mag_noisycricket,"1.5s装填时间,2弹容"
 4,Order,Pistol,79,Barrel,ORD_PS.part_barrel_noisycricket,"吵闹蟋蟀,4461伤害,57%精准度,3.0/s射速,2/每发"
 4,Order,Pistol,81,Barrel,ORD_PS.part_barrel_02_rocketreload,"幸运四叶草,892伤害,75%精准度,8.0/s射速"
+4,Order,Pistol,84,Barrel,ORD_PS.part_barrel_02_Roulette,"轮盘赌,1227伤害,84%精准度,8.0/s射速,+5%暴击伤害"
 26,Order,Sniper,2,Body,ORD_SR.part_body,"无属性变化，固有部件"
 26,Order,Sniper,3,Body Accessory,ORD_SR.part_body_a,-装填时间
 26,Order,Sniper,4,Body Accessory,ORD_SR.part_body_b,+伤害
@@ -1129,6 +1138,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 7,Ripper,Shotgun,81,Foregrip,BOR_SG.part_foregrip_02,+射速
 7,Ripper,Shotgun,82,Manufacturer Part,BOR_SG.part_mag_torgue_normal,托格冲击弹匣
 7,Ripper,Shotgun,83,Manufacturer Part,BOR_SG.part_mag_torgue_sticky,托格粘性弹匣
+7,Ripper,Shotgun,55,Barrel,BOR_SG.part_unique_barrel_02_demo,"一触即发,4601伤害,70%精准度,1.3/s射速"
 19,Ripper,SMG,2,Body,BOR_SM.part_body,"无属性变化，固有部件"
 19,Ripper,SMG,3,Body Accessory,BOR_SM.part_body_a,-装填时间
 19,Ripper,SMG,4,Body Accessory,BOR_SM.part_body_b,+弹夹容量
@@ -1274,6 +1284,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 23,Ripper,Sniper,79,Manufacturer Part,BOR_SR.part_barrel_licensed_hyp,亥伯龙护盾
 23,Ripper,Sniper,80,Stat Modifier,BOR_SR.part_mag_ted_thrown_04_cov,3.0s装填时间
 23,Ripper,Sniper,81,Magazine,BOR_SR.part_mag_03_tor,"2.3s装填时间,8弹容"
+23,Ripper,Sniper,22,Barrel,BOR_SR.part_barrel_01_tankbuster,"反坦克炮,4685伤害,92%精准度,2.5/s射速，2/每发,+50%暴击伤害"
 14,Tediore,Assault Rifle,1,Magazine,TED_AR.part_mag_01_Chuck,"0.7s装填时间,10弹容"
 14,Tediore,Assault Rifle,2,Body,TED_AR.part_body,"无属性变化，固有部件"
 14,Tediore,Assault Rifle,3,Body Accessory,TED_AR.part_body_a,无可见属性变化
@@ -1353,6 +1364,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 14,Tediore,Assault Rifle,86,Magazine,TED_AR.part_mag_05_borg,"2.8s装填时间,32弹容,开颅者弹匣"
 14,Tediore,Assault Rifle,87,Manufacturer Part,TED_AR.part_mag_torgue_normal,托格冲击弹匣
 14,Tediore,Assault Rifle,88,Manufacturer Part,TED_AR.part_mag_torgue_sticky,托格粘性弹匣
+14,Tediore,Assault Rifle,78,Barrel,TED_AR.part_barrel_01_LaserDisc,"激光飞盘,2900伤害,75%精准度,1.5/s射速"
 5,Tediore,Pistol,2,Body,TED_PS.part_body,"无属性变化，固有部件"
 5,Tediore,Pistol,3,Body Accessory,TED_PS.part_body_a,无可见属性变化
 5,Tediore,Pistol,4,Body Accessory,TED_PS.part_body_b,+弹夹容量
@@ -1510,6 +1522,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 11,Tediore,Shotgun,75,Barrel,TED_SG.part_barrel_01_anarchy,"无政府主义,335x12伤害,61%精准度,1.6/s射速,2/每发"
 11,Tediore,Shotgun,77,Barrel,TED_SG.part_barrel_01_commbd,"遗弃混沌,480x8伤害,61%精准度,1.3/s射速,2/每发"
 11,Tediore,Shotgun,79,Underbarrel,TED_SG.part_underbarrel_01_heavyturret,哈士奇好友下挂-哈士奇自动炮塔
+11,Tediore,Shotgun,81,Barrel,TED_SG.part_barrel_01_Eigenburst,"特征爆发,1394x3伤害,82%精准度,2.3/s射速,2/每发"
 17,Torgue,Assault Rifle,3,Body Accessory,TOR_AR.part_body_a,-装填时间
 17,Torgue,Assault Rifle,4,Body Accessory,TOR_AR.part_body_b,+伤害
 17,Torgue,Assault Rifle,5,Body Accessory,TOR_AR.part_body_c,+精准度
@@ -1583,6 +1596,10 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 17,Torgue,Assault Rifle,75,Foregrip,TOR_AR.part_foregrip_03_pt,+溅射范围
 17,Torgue,Assault Rifle,76,Foregrip,TOR_AR.part_foregrip_02_pt,+射速
 17,Torgue,Assault Rifle,77,Barrel,TOR_AR.part_barrel_potatothrower,"土豆投掷者Ⅳ,580伤害,75%精准度,5.5/s射速"
+17,Torgue,Assault Rifle,79,Foregrip,TOR_AR.part_foregrip_03_fleabag,+溅射范围
+17,Torgue,Assault Rifle,80,Foregrip,TOR_AR.part_foregrip_02_fleabag,+射速
+17,Torgue,Assault Rifle,81,Foregrip,TOR_AR.part_foregrip_01_fleabag,+伤害
+17,Torgue,Assault Rifle,82,Barrel,TOR_AR.part_barrel_fleabag,"跳蚤袋,1472伤害,78%精准度,5.5/s射速"
 6,Torgue,Pistol,2,Body,TOR_PS.part_body,"无属性变化，固有部件"
 6,Torgue,Pistol,3,Body Accessory,TOR_PS.part_body_a,-装填时间
 6,Torgue,Pistol,4,Body Accessory,TOR_PS.part_body_b,+伤害
@@ -1653,6 +1670,10 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 6,Torgue,Pistol,74,Underbarrel,TOR_PS.part_underbarrel_04_atlas,阿特拉斯追踪飞镖
 6,Torgue,Pistol,75,Underbarrel,TOR_PS.part_underbarrel_02_blowback,附属开火-废气喷射
 6,Torgue,Pistol,76,Foregrip,TOR_PS.part_foregrip_01,+伤害
+6,Torgue,Pistol,77,Barrel,TOR_PS.part_barrel_02_Handcannon,"手铳,3458伤害,64%精准度,1.8/s射速"
+6,Torgue,Pistol,79,Foregrip,TOR_PS.part_foregrip_03_Handcannon,+溅射范围
+6,Torgue,Pistol,80,Foregrip,TOR_PS.part_foregrip_02_Handcannon,+射速
+6,Torgue,Pistol,81,Foregrip,TOR_PS.part_foregrip_01_Handcannon,+伤害
 12,Torgue,Shotgun,2,Body,TOR_SG.part_body,"无属性变化，固有部件"
 12,Torgue,Shotgun,3,Body Accessory,TOR_SG.part_body_a,-装填时间
 12,Torgue,Shotgun,4,Body Accessory,TOR_SG.part_body_b,+伤害
@@ -1722,6 +1743,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 12,Torgue,Shotgun,72,Manufacturer Part,TOR_SG.part_barrel_licensed_ted_mirv,"泰迪尔分裂式,无可见属性变化"
 12,Torgue,Shotgun,73,Manufacturer Part,TOR_SG.part_barrel_licensed_ted_combo,"泰迪尔组合,无可见属性变化"
 12,Torgue,Shotgun,74,Manufacturer Part,TOR_SG.part_barrel_licensed_hyp,"亥伯龙护盾可见附件,无可见属性变化"
+12,Torgue,Shotgun,78,Barrel,TOR_SG.part_barrel_02_arctic,"正反切,3681伤害,70%精准度,2.3/s射速,2/每发"
 18,Vladof,Assault Rifle,1,Barrel,VLA_AR.part_barrel_01_lucian,"卢西恩的侧攻,647伤害,76%精准度,11.5/s射速"
 18,Vladof,Assault Rifle,2,Body,VLA_AR.part_body,"无属性变化，固有部件"
 18,Vladof,Assault Rifle,3,Body Accessory,VLA_AR.part_body_a,-装填时间
@@ -1811,6 +1833,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 18,Vladof,Assault Rifle,91,Underbarrel Accessory,VLA_AR.part_underbarrel_scrap_acc,增加碎片火炮伤害
 18,Vladof,Assault Rifle,92,Underbarrel,VLA_AR.part_underbarrel_02_wf_scrapcannon,旺德发下挂-碎片火炮-从下挂配件发射大量弹片造成伤害并提升目标受到的伤害
 18,Vladof,Assault Rifle,94,Barrel,VLA_AR.part_barrel_wf,"旺德发,848伤害,84%精准度,6.1/s射速"
+18,Vladof,Assault Rifle,99,Barrel,VLA_AR.part_barrel_01_bubbles,"泡泡,1004x2伤害,61%精准度,5.6/s射速"
 22,Vladof,SMG,2,Body,VLA_SM.part_body,"无属性变化，固有部件"
 22,Vladof,SMG,3,Body Accessory,VLA_SM.part_body_a,-装填时间
 22,Vladof,SMG,4,Body Accessory,VLA_SM.part_body_b,+弹夹容量
@@ -1895,6 +1918,9 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 22,Vladof,SMG,85,Manufacturer Part,VLA_SM.part_barrel_licensed_hyp,"亥伯龙护盾可见附件,无可见属性变化"
 22,Vladof,SMG,86,Manufacturer Part,VLA_SM.part_mag_torgue_normal_beegun,"托格冲击弹匣,仅限伯特的蜜蜂"
 22,Vladof,SMG,87,Barrel,VLA_SM.part_barrel_beegun,"伯特的蜜蜂,528伤害,73%精准度,12.4/s射速"
+22,Vladof,SMG,89,Manufacturer Part,VLA_SM.part_mag_torgue_sticky_mercury,"托格粘性弹匣,仅限水银好奇者"
+22,Vladof,SMG,90,Manufacturer Part,VLA_SM.part_mag_torgue_normal_mercury,"托格冲击弹匣,仅限水银好奇者"
+22,Vladof,SMG,91,Barrel,VLA_SM.part_barrel_mercury,"水银好奇者,1562伤害,71%精准度,4.3/s射速,2/每发"
 16,Vladof,Sniper,1,Barrel,VLA_SR.part_barrel_02_finnty,"芬妮迪XXX-L,937伤害,94%精准度,13.0/s射速,50%暴击伤害"
 16,Vladof,Sniper,2,Body,VLA_SR.part_body,"无属性变化，固有部件"
 16,Vladof,Sniper,3,Body Accessory,VLA_SR.part_body_d,无可见属性变化

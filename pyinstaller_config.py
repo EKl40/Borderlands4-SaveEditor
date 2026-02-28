@@ -44,6 +44,12 @@ for file_path in glob.glob('heavy/*'):
     if file_path.endswith('.csv') or file_path.endswith('.json'):
         heavy_files.append((file_path, 'heavy'))
 
+# 动态收集loadout目录下的所有.csv和.json文件
+loadout_files = []
+for file_path in glob.glob('loadout/*'):
+    if file_path.endswith('.csv') or file_path.endswith('.json'):
+        loadout_files.append((file_path, 'loadout'))
+
 # 动态收集i18n目录下的所有本地化文件
 i18n_files = []
 for file_path in glob.glob('i18n/*'):
@@ -75,7 +81,7 @@ a = Analysis(
         ('class_mods/Harlowe/*.png', 'class_mods/Harlowe'),
         ('class_mods/Rafa/*.png', 'class_mods/Rafa'),
         ('class_mods/Vex/*.png', 'class_mods/Vex'),
-    ] + {enhancement_files} + {weapon_files} + {grenade_files} + {shield_files} + {repkit_files} + {heavy_files} + {i18n_files} + {assets_files},
+    ] + {enhancement_files} + {weapon_files} + {grenade_files} + {shield_files} + {repkit_files} + {heavy_files} + {loadout_files} + {i18n_files} + {assets_files},
     hiddenimports=[
         'PIL',
         'pandas',

@@ -5,7 +5,7 @@ import itertools
 import os
 from pathlib import Path
 
-VERSION = "3.4.5.2"
+VERSION = "3.4.6"
 from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QPushButton, QLabel, QLineEdit, QMessageBox, QFileDialog,
@@ -40,17 +40,36 @@ class BackgroundWidget(QLabel):
         # Prevent the background from affecting window size
         from PyQt6.QtWidgets import QSizePolicy
         self.setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Ignored)
+        from PyQt6.QtCore import QSettings
+        self.settings = QSettings('SuperExboom', 'BL4SaveEditor')
         self._load_background_image()
         
     def _load_background_image(self):
         """Load and apply the background image with blur effect."""
-        bg_path = resource_loader.get_resource_path("assets/bg.jpg")
+        custom_bg = self.settings.value('custom_background', None)
+        if custom_bg and Path(custom_bg).exists():
+            bg_path = Path(custom_bg)
+        else:
+            bg_path = resource_loader.get_resource_path("assets/bg.jpg")
+            
         if bg_path and bg_path.exists():
             self._original_pixmap = QPixmap(str(bg_path))
             self._apply_blur()
         else:
             # Fallback: solid dark background
             self.setStyleSheet("background-color: #1a1a20;")
+
+    def set_custom_image(self, bg_path):
+        from PyQt6.QtGui import QResizeEvent
+        if bg_path and Path(bg_path).exists():
+            self.settings.setValue('custom_background', str(bg_path))
+        else:
+            self.settings.remove('custom_background')
+            
+        self._load_background_image()
+        if self.isVisible():
+            # Trigger a resize event to ensure scaling is maintained
+            self.resizeEvent(QResizeEvent(self.size(), self.size()))
     
     def _apply_blur(self):
         """Apply blur effect to the background."""
@@ -247,7 +266,7 @@ class MainWindow(QMainWindow):
         # Initialize theme manager
         self.theme_manager = ThemeManager()
         
-        self.setWindowTitle(self.loc['window_title'].format(version=VERSION))
+        self.setWindowTitle(f"{self.loc['window_title']} V{VERSION}")
         icon_path = resource_loader.get_resource_path("assets/BL4.ico")
         if icon_path:
             self.setWindowIcon(QIcon(str(icon_path)))
@@ -340,7 +359,7 @@ class MainWindow(QMainWindow):
         else:
             # Fallback if file missing (or partial)
             self.loc = {
-                "window_title": "Borderlands 4 Save Editor V{version}",
+                "window_title": "Borderlands 4 Save Editor",
                 "subtitle": "By SuperExboom",
                 "header": {"title": "BL4 Save Editor", "open": "Open", "save": "Save", "save_as": "Save As..."},
                 "menu": {"open_selector": "Open Selector", "save": "Save", "save_as": "Save As..."},
@@ -350,10 +369,14 @@ class MainWindow(QMainWindow):
                     "converter": "Converter", "yaml_editor": "YAML", "class_mod": "Class Mod", 
                     "enhancement": "Enhancement", "weapon_editor": "Weapon Edit", 
                     "weapon_generator": "Weapon Gen", "grenade": "Grenade", "shield": "Shield", 
-                    "repkit": "RepKit", "heavy_weapon": "Heavy"
+                    "repkit": "RepKit", "heavy_weapon": "Heavy", "loadout_manager": "Loadout"
                 },
                 "dialogs": {
-                    "success": "Success", "error": "Error", "critical": "Critical", "warning": "Warning", "cancel": "Cancel"
+                    "success": "Success", "error": "Error", "critical": "Critical", "warning": "Warning", "cancel": "Cancel",
+                    "change_bg_title": "Select Background Image",
+                    "image_files": "Image Files",
+                    "clear_bg_prompt": "Do you want to clear the custom background or select a new one?\nYes: Clear\nNo: Select New\nCancel: Do Nothing",
+                    "clear_bg_title": "Clear Background"
                 },
                 "worker": {
                     "no_data": "No data.", "error_prefix": "Error: "
@@ -406,6 +429,32 @@ class MainWindow(QMainWindow):
 
         self.save_as_action = QAction(self.loc['menu']['save_as'], self)
         self.save_as_action.triggered.connect(lambda: self.encrypt_and_save(save_as=True))
+
+    def change_background(self):
+        """Open file dialog to select a new background image or clear existing one."""
+        has_custom = self.background_widget.settings.value('custom_background', None) is not None
+        
+        if has_custom:
+            reply = QMessageBox.question(
+                self, 
+                self.loc.get('dialogs', {}).get('clear_bg_title', 'Clear Background'),
+                self.loc.get('dialogs', {}).get('clear_bg_prompt', 'Do you want to clear the custom background or select a new one?\nYes: Clear\nNo: Select New\nCancel: Do Nothing'),
+                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No | QMessageBox.StandardButton.Cancel
+            )
+            if reply == QMessageBox.StandardButton.Yes:
+                self.background_widget.set_custom_image(None)
+                return
+            elif reply == QMessageBox.StandardButton.Cancel:
+                return
+
+        file_path, _ = QFileDialog.getOpenFileName(
+            self,
+            self.loc.get('dialogs', {}).get('change_bg_title', 'Select Background Image'),
+            "",
+            f"{self.loc.get('dialogs', {}).get('image_files', 'Image Files')} (*.png *.jpg *.jpeg *.webp *.bmp)"
+        )
+        if file_path:
+            self.background_widget.set_custom_image(file_path)
 
     def _create_header_bar(self):
         self.header_bar = QWidget()
@@ -469,6 +518,15 @@ class MainWindow(QMainWindow):
         self.theme_button.setToolTip(self._get_theme_tooltip())
         self.theme_button.clicked.connect(self.toggle_theme)
         header_layout.addWidget(self.theme_button)
+
+        # Background toggle button (next to theme button)
+        self.bg_button = QPushButton("🖼️")
+        self.bg_button.setObjectName("bgButton")
+        self.bg_button.setFixedWidth(45)
+        # We need a fallback tooltip text if not in dict
+        self.bg_button.setToolTip(self.loc.get('header', {}).get('change_bg', 'Change Background'))
+        self.bg_button.clicked.connect(self.change_background)
+        header_layout.addWidget(self.bg_button)
 
         header_layout.addStretch()
 
@@ -722,7 +780,7 @@ class MainWindow(QMainWindow):
                 # Success
                 QMessageBox.information(self, self.loc['dialogs']['success'], 
                                         self.loc['dialogs']['decrypt_success'].format(platform=platform.upper(), backup_name=backup_name))
-                self.setWindowTitle(f"{self.loc['window_title'].format(version=VERSION)} - {file_path.name}")
+                self.setWindowTitle(f"{self.loc['window_title']} V{VERSION} - {file_path.name}")
                 
                 QTimer.singleShot(0, self.refresh_all_tabs)
                 self.switch_to_tab(1)  # Switch to character tab
@@ -1027,7 +1085,10 @@ class MainWindow(QMainWindow):
         print("DEBUG: change_language finished")
         
     def update_ui_text(self):
-        self.setWindowTitle(self.loc['window_title'])
+        if getattr(self.controller, 'save_path', None):
+            self.setWindowTitle(f"{self.loc['window_title']} V{VERSION} - {self.controller.save_path.name}")
+        else:
+            self.setWindowTitle(f"{self.loc['window_title']} V{VERSION}")
         self.header_bar.findChild(QLabel, "titleLabel").setText(self.loc['header']['title'])
         self.header_bar.findChild(QLabel, "subtitleLabel").setText(self.loc['subtitle'])
         self.open_button.setText(self.loc['header']['open'])
@@ -1043,7 +1104,7 @@ class MainWindow(QMainWindow):
         tab_keys = [
             'select_save', 'character', 'items', 'converter', 'yaml_editor',
             'class_mod', 'enhancement', 'weapon_editor', 'weapon_generator',
-            'grenade', 'shield', 'repkit', 'heavy_weapon'
+            'grenade', 'shield', 'repkit', 'heavy_weapon', 'loadout_manager'
         ]
 
         for i, key in enumerate(tab_keys):

@@ -29,7 +29,7 @@
     }
   },
   "main_window": {
-    "window_title": "Borderlands 4 Save Editor V{version}",
+    "window_title": "Borderlands 4 Save Editor",
     "subtitle": "Автор: SuperExboom - Бесплатно. Если вы заплатили за это, вас обманули",
     "header": {
       "title": "Редактор сохранений Borderlands 4",
@@ -37,7 +37,8 @@
       "save": "Сохранить",
       "save_as": "Сохранить как...",
       "theme_dark": "Переключить на темную тему",
-      "theme_light": "Переключить на светлую тему"
+      "theme_light": "Переключить на светлую тему",
+      "change_bg": "Сменить Фон"
     },
     "menu": {
       "open_selector": "Выбор сохранения",
@@ -69,6 +70,10 @@
       "warning": "Внимание",
       "critical": "Критическая ошибка",
       "cancel": "Отмена",
+      "change_bg_title": "Выберите Фоновое Изображение",
+      "image_files": "Файлы Изображений",
+      "clear_bg_prompt": "Хотите очистить пользовательский фон или выбрать новый?\nYes: Очистить\nNo: Выбрать Новый\nCancel: Отмена",
+      "clear_bg_title": "Очистить Фон",
       "decrypt_success": "Сохранение расшифровано!\nПлатформа: {platform}\nБэкап создан: {backup_name}",
       "decrypt_failed": "Ошибка расшифровки",
       "decrypt_failed_msg": "Не удалось расшифровать с ID '{user_id}'.\n({error})\n\nПожалуйста, введите правильный 64-битный ID:",

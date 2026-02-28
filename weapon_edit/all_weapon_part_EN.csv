@@ -71,11 +71,14 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 13,Daedalus,Assault Rifle,71,Manufacturer Part,DAD_AR.part_body_mag_sr,Daedalus SR Ammo
 13,Daedalus,Assault Rifle,75,Underbarrel,DAD_AR.part_underbarrel_om_spacelaser,Space Laser
 13,Daedalus,Assault Rifle,76,Underbarrel,DAD_AR.part_underbarrel_06_star_helix,Star Helix Underbarrel
-13,Daedalus,Assault Rifle,77,Barrel,DAD_AR.part_barrel_02_star_helix,"Star Helix Barrel, 669 x 3 Damage, 78% Acc, 4.7/s Fire Rate"
+13,Daedalus,Assault Rifle,77,Barrel,DAD_AR.part_barrel_02_star_helix,"Star Helix Barrel, 669 x 3 Damage, 78% Acc, 4.7/s FR"
 13,Daedalus,Assault Rifle,78,Manufacturer Part,DAD_AR.part_shield_default,Hyperion Shield
 13,Daedalus,Assault Rifle,79,Manufacturer Part,DAD_AR.part_shield_ricochet,Hyperion Ricochet Shield
 13,Daedalus,Assault Rifle,80,Manufacturer Part,DAD_AR.part_shield_ammo,Hyperion Absorb Shield
 13,Daedalus,Assault Rifle,81,Manufacturer Part,DAD_AR.part_shield_amp,Hyperion Amp Shield
+13,Daedalus,Assault Rifle,82,Barrel,DAD_AR.part_barrel_01_Mercredi,"Mercredi,892 Damage, 78% Acc,6.8/s FR"
+13,Daedalus,Assault Rifle,89,Underbarrel,DAD_AR.part_underbarrel_04_atlas_ball_Mercredi,Atlas Tracker Grenades
+13,Daedalus,Assault Rifle,90,Underbarrel,DAD_AR.part_underbarrel_04_atlas_Mercredi,Atlas Tracker Darts
 2,Daedalus,Pistol,1,Barrel,DAD_PS.part_barrel_01_zipgun,"Zipper, 692 Damage, 75% Acc, 6.2/s FR"
 2,Daedalus,Pistol,2,Body,DAD_PS.part_body,"No stat changes, always present"
 2,Daedalus,Pistol,3,Body Accessory,DAD_PS.part_body_a,-Reload Speed
@@ -448,6 +451,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 3,Jakobs,Pistol,75,Barrel,JAK_PS.part_barrel_02_kingsgambit,"King's Gambit, 1874 Damage, 69% Acc, 7.5/s FR"
 3,Jakobs,Pistol,77,Barrel,JAK_PS.part_barrel_01_phantom_flame,"Phantom Flame, 1785 Damage, 43% Acc, 9.0/s FR"
 3,Jakobs,Pistol,80,Barrel,JAK_PS.part_barrel_01_seventh_sense,"Seventh Sense, 1785 Damage, 67% Acc, 9.0/s FR"
+3,Jakobs,Pistol,82,Barrel,JAK_PS.part_barrel_shalashaska,"Shalashaska,2275 Damage,82% Acc,7.5/s FR,+20% Crit Damage"
 9,Jakobs,Shotgun,1,Stat Modifier,JAK_SG.part_body_ele_rainbowvomit_cryo_fire_shock,"Color Spray - Cryo, Fire, Shock"
 9,Jakobs,Shotgun,2,Body,JAK_SG.part_body,"No stat changes, always present"
 9,Jakobs,Shotgun,3,Body Accessory,JAK_SG.part_body_a,-Reload Speed
@@ -537,6 +541,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 9,Jakobs,Shotgun,92,Magazine,JAK_SG.part_mag_02_b02,"5.5s Reload, -Damage, 6 Shots, 2 Shot"
 9,Jakobs,Shotgun,93,Magazine,JAK_SG.part_mag_01_b01,"1.7s Reload, +Damage, 1 Shot"
 9,Jakobs,Shotgun,94,Magazine,JAK_SG.part_mag_01_b02,"1.7s Reload, 2 Shots, 2 Shot"
+9,Jakobs,Shotgun,99,Barrel,JAK_SG.part_barrel_Doeshot,"Doeshot,1543x2 Damage,82% Acc,2.7/s FR,+20% Crit Damage"
 24,Jakobs,Sniper,2,Body,JAK_SR.part_body,"No stat changes, always present"
 24,Jakobs,Sniper,3,Body Accessory,JAK_SR.part_body_a,-Reload Speed
 24,Jakobs,Sniper,4,Body Accessory,JAK_SR.part_body_b,-Reload Speed
@@ -757,6 +762,8 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 21,Maliwan,SMG,76,Manufacturer Part,MAL_SM.part_barrel_licensed_ted_mirv,"Tediore MIRV, no stat changes"
 21,Maliwan,SMG,77,Manufacturer Part,MAL_SM.part_barrel_licensed_ted_combo,"Tediore Combo, no stat changes"
 21,Maliwan,SMG,78,Manufacturer Part,MAL_SM.part_barrel_licensed_hyp,"Hyperion Shield visual accessory, no stat changes"
+21,Maliwan,SMG,79,Manufacturer Part,MAL_SM.part_mag_torgue_normal_songbird,"Torgue Impact Gyrojets"
+21,Maliwan,SMG,80,Barrel,MAL_SM.part_barrel_02_songbird,"Broken Wings,290x5 Damage,55% Acc,8.0/s FR"
 25,Maliwan,Sniper,2,Body,MAL_SR.part_body,"No stat changes, always present"
 25,Maliwan,Sniper,3,Body Accessory,MAL_SR.part_body_a,-Reload Speed
 25,Maliwan,Sniper,4,Body Accessory,MAL_SR.part_body_b,+Ammo
@@ -833,6 +840,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 25,Maliwan,Sniper,77,Manufacturer Part,MAL_SR.part_barrel_licensed_ted_combo,"Tediore Combo, no stat changes"
 25,Maliwan,Sniper,78,Manufacturer Part,MAL_SR.part_barrel_licensed_hyp,"Hyperion Shield visual accessory, no stat changes"
 25,Maliwan,Sniper,79,Barrel,MAL_SR.part_barrel_01_asher,"Asher's Rise, 1522 Damage, 89% Acc, 6.6/s FR"
+25,Maliwan,Sniper,81,Barrel,MAL_SR.part_barrel_02_conflux,"Conflux,2342 Damage,87% Acc,2.0/s FR,+50% Crit Damage"
 15,Order,Assault Rifle,1,Scope,ORD_AR.part_scope_02_lens_02_gmr,ADS +++Zoom
 15,Order,Assault Rifle,2,Barrel,ORD_AR.part_barrel_02_gmr,"G.M.R., 1785 Damage, 65% Acc, 4.0/s FR"
 15,Order,Assault Rifle,3,Body Accessory,ORD_AR.part_body_a,-Reload Speed
@@ -981,6 +989,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 4,Order,Pistol,78,Magazine,ORD_PS.part_mag_noisycricket,"1.5s Reload, 2 Shots, 2 Shot"
 4,Order,Pistol,79,Barrel,ORD_PS.part_barrel_noisycricket,"Noisy Cricket, 4461 Damage, 57% Acc, 3.0/s FR, 2 Shot"
 4,Order,Pistol,81,Barrel,ORD_PS.part_barrel_02_rocketreload,"Lucky Clover, 892 Damage, 75% Acc, 8.0/s FR"
+4,Order,Pistol,84,Barrel,ORD_PS.part_barrel_02_Roulette,"Roulette,1227 Damage,84% Acc,8.0/s FR,+5% Crit Damage"
 26,Order,Sniper,2,Body,ORD_SR.part_body,"No stat changes, always present"
 26,Order,Sniper,3,Body Accessory,ORD_SR.part_body_a,-Reload Speed
 26,Order,Sniper,4,Body Accessory,ORD_SR.part_body_b,+Damage
@@ -1129,6 +1138,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 7,Ripper,Shotgun,81,Foregrip,BOR_SG.part_foregrip_02,+Fire Rate
 7,Ripper,Shotgun,82,Manufacturer Part,BOR_SG.part_mag_torgue_normal,Torgue Impact Gyrojets
 7,Ripper,Shotgun,83,Manufacturer Part,BOR_SG.part_mag_torgue_sticky,Torgue Sticky Gyrojets
+7,Ripper,Shotgun,55,Barrel,BOR_SG.part_unique_barrel_02_demo,"Hair Trigger,4601 Damage,70% Acc,1.3/s FR"
 19,Ripper,SMG,2,Body,BOR_SM.part_body,"No stat changes, always present"
 19,Ripper,SMG,3,Body Accessory,BOR_SM.part_body_a,-Reload Speed
 19,Ripper,SMG,4,Body Accessory,BOR_SM.part_body_b,+Ammo
@@ -1274,7 +1284,8 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 23,Ripper,Sniper,79,Manufacturer Part,BOR_SR.part_barrel_licensed_hyp,Hyperion Shield
 23,Ripper,Sniper,80,Stat Modifier,BOR_SR.part_mag_ted_thrown_04_cov,3.0s Reload
 23,Ripper,Sniper,81,Magazine,BOR_SR.part_mag_03_tor,"2.3s Reload, +Damage, -Fire Rate, 8 Shots"
-14,Tediore,Assault Rifle,1,Magazine,TED_AR.part_mag_01_ï¿½ï¿½ï¿½ï¿½,"0.7s Reload, +Fire Rate, 10 Shots"
+23,Ripper,Sniper,22,Barrel,BOR_SR.part_barrel_01_tankbuster,"Tankbuster,4685 Damage,92% Acc,2.5/s FR，2/shot,+50% Crit Damage"
+14,Tediore,Assault Rifle,1,Magazine,TED_AR.part_mag_01_Chuck,"0.7s Reload, +Fire Rate, 10 Shots"
 14,Tediore,Assault Rifle,2,Body,TED_AR.part_body,"No stat changes, always present"
 14,Tediore,Assault Rifle,3,Body Accessory,TED_AR.part_body_a,No Stat Changes
 14,Tediore,Assault Rifle,4,Body Accessory,TED_AR.part_body_b,+Ammo
@@ -1353,6 +1364,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 14,Tediore,Assault Rifle,86,Magazine,TED_AR.part_mag_05_borg,"2.8s Reload, +Damage, +Fire Rate, 32 Shots, Ripper Mag"
 14,Tediore,Assault Rifle,87,Manufacturer Part,TED_AR.part_mag_torgue_normal,Torgue Impact Gyrojets
 14,Tediore,Assault Rifle,88,Manufacturer Part,TED_AR.part_mag_torgue_sticky,Torgue Sticky Gyrojets
+14,Tediore,Assault Rifle,78,Barrel,TED_AR.part_barrel_01_LaserDisc,"Laser Disker,2900 Damage,75% Acc,1.5/s FR"
 5,Tediore,Pistol,2,Body,TED_PS.part_body,"No stat changes, always present"
 5,Tediore,Pistol,3,Body Accessory,TED_PS.part_body_a,No Stat Changes
 5,Tediore,Pistol,4,Body Accessory,TED_PS.part_body_b,+Ammo
@@ -1507,9 +1519,10 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 11,Tediore,Shotgun,72,Manufacturer Part,TED_SG.part_barrel_licensed_multi,No Stat Changes
 11,Tediore,Shotgun,73,Grip,TED_SG.part_grip_05a_ted_legs_mirv,"Tediore reload modifier: Legs, no stat changes"
 11,Tediore,Shotgun,74,Manufacturer Part,TED_SG.part_barrel_licensed_ted_replicator_multi,No Stat Changes
-11,Tediore,Shotgun,75,Barrel,TED_SG.part_barrel_01_anarchy,"Anarchy, 335 x 12 Damage, 61% Acc, 1.6/s FR, 2 Shot"
-11,Tediore,Shotgun,77,Barrel,TED_SG.part_barrel_01_commbd,"Forsaken Chaos, 480 x 8 Damage, 61% Acc, 1.3/s FR, 2 Shot"
+11,Tediore,Shotgun,75,Barrel,TED_SG.part_barrel_01_anarchy,"Anarchy,335 x 12 Damage,61% Acc,1.6/s FR,2 Shot"
+11,Tediore,Shotgun,77,Barrel,TED_SG.part_barrel_01_commbd,"Forsaken Chaos,480 x 8 Damage,61% Acc,1.3/s FR,2 Shot"
 11,Tediore,Shotgun,79,Underbarrel,TED_SG.part_underbarrel_01_heavyturret,Husky Auto Turret
+11,Tediore,Shotgun,81,Barrel,TED_SG.part_barrel_01_Eigenburst,"Eigenburst,1394x3 Damage,82% Acc,2.3/s FR,2 Shot"
 17,Torgue,Assault Rifle,3,Body Accessory,TOR_AR.part_body_a,-Reload Speed
 17,Torgue,Assault Rifle,4,Body Accessory,TOR_AR.part_body_b,+Damage
 17,Torgue,Assault Rifle,5,Body Accessory,TOR_AR.part_body_c,+Accuracy
@@ -1582,7 +1595,11 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 17,Torgue,Assault Rifle,74,Foregrip,TOR_AR.part_foregrip_01,+Damage
 17,Torgue,Assault Rifle,75,Foregrip,TOR_AR.part_foregrip_03_pt,+Blast Radius
 17,Torgue,Assault Rifle,76,Foregrip,TOR_AR.part_foregrip_02_pt,+Fire Rate
-17,Torgue,Assault Rifle,77,Barrel,TOR_AR.part_barrel_potatothrower,"Potato Thrower IV, 580 Damage, 75% Acc, 5.5/s FR"
+17,Torgue,Assault Rifle,77,Barrel,TOR_AR.part_barrel_potatothrower,"Potato Thrower IV,580 Damage,75% Acc,5.5/s FR"
+17,Torgue,Assault Rifle,79,Foregrip,TOR_AR.part_foregrip_03_fleabag,+Blast Radius
+17,Torgue,Assault Rifle,80,Foregrip,TOR_AR.part_foregrip_02_fleabag,+Fire Rate
+17,Torgue,Assault Rifle,81,Foregrip,TOR_AR.part_foregrip_01_fleabag,+Damage
+17,Torgue,Assault Rifle,82,Barrel,TOR_AR.part_barrel_fleabag,"Fleabag,1472 Damage,78% Acc,5.5/s FR"
 6,Torgue,Pistol,2,Body,TOR_PS.part_body,"No stat changes, always present"
 6,Torgue,Pistol,3,Body Accessory,TOR_PS.part_body_a,-Reload Speed
 6,Torgue,Pistol,4,Body Accessory,TOR_PS.part_body_b,+Damage
@@ -1653,6 +1670,10 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 6,Torgue,Pistol,74,Underbarrel,TOR_PS.part_underbarrel_04_atlas,Atlas Tracker Darts
 6,Torgue,Pistol,75,Underbarrel,TOR_PS.part_underbarrel_02_blowback,Alt Fire - Exhaust Blast
 6,Torgue,Pistol,76,Foregrip,TOR_PS.part_foregrip_01,+Damage
+6,Torgue,Pistol,77,Barrel,TOR_PS.part_barrel_02_Handcannon,"Handcannon,3458 Damage,64% Acc,1.8/s FR"
+6,Torgue,Pistol,79,Foregrip,TOR_PS.part_foregrip_03_Handcannon,+Blast Radius
+6,Torgue,Pistol,80,Foregrip,TOR_PS.part_foregrip_02_Handcannon,+Fire Rate
+6,Torgue,Pistol,81,Foregrip,TOR_PS.part_foregrip_01_Handcannon,+Damage
 12,Torgue,Shotgun,2,Body,TOR_SG.part_body,"No stat changes, always present"
 12,Torgue,Shotgun,3,Body Accessory,TOR_SG.part_body_a,-Reload Speed
 12,Torgue,Shotgun,4,Body Accessory,TOR_SG.part_body_b,+Damage
@@ -1722,6 +1743,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 12,Torgue,Shotgun,72,Manufacturer Part,TOR_SG.part_barrel_licensed_ted_mirv,"Tediore MIRV, no stat changes"
 12,Torgue,Shotgun,73,Manufacturer Part,TOR_SG.part_barrel_licensed_ted_combo,"Tediore Combo, no stat changes"
 12,Torgue,Shotgun,74,Manufacturer Part,TOR_SG.part_barrel_licensed_hyp,"Hyperion Shield visual accessory, no stat changes"
+12,Torgue,Shotgun,78,Barrel,TOR_SG.part_barrel_02_arctic,"ARC-TAN,3681 Damage,70% Acc,2.3/s FR,2 Shot"
 18,Vladof,Assault Rifle,1,Barrel,VLA_AR.part_barrel_01_lucian,"Lucian's Flank, 647 DMG, 76% Acc, 11.5/s FR"
 18,Vladof,Assault Rifle,2,Body,VLA_AR.part_body,"No stat changes, always present"
 18,Vladof,Assault Rifle,3,Body Accessory,VLA_AR.part_body_a,-Reload Speed
@@ -1811,6 +1833,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 18,Vladof,Assault Rifle,91,Underbarrel Accessory,VLA_AR.part_underbarrel_scrap_acc,Increases Scrap Cannon Damage
 18,Vladof,Assault Rifle,92,Underbarrel,VLA_AR.part_underbarrel_02_wf_scrapcannon,Scrap Cannon - Fires a spread of shrapnel from teh Underbarrel
 18,Vladof,Assault Rifle,94,Barrel,VLA_AR.part_barrel_wf,"Whiskey Foxtrot, 848 DMG, 84% Acc, 6.1/s FR"
+18,Vladof,Assault Rifle,99,Barrel,VLA_AR.part_barrel_01_bubbles,"Bubbles,1004x2 Damage,61% Acc,5.6/s FR"
 22,Vladof,SMG,2,Body,VLA_SM.part_body,"No stat changes, always present"
 22,Vladof,SMG,3,Body Accessory,VLA_SM.part_body_a,-Reload Speed
 22,Vladof,SMG,4,Body Accessory,VLA_SM.part_body_b,+Ammo
@@ -1895,6 +1918,9 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,String,
 22,Vladof,SMG,85,Manufacturer Part,VLA_SM.part_barrel_licensed_hyp,"Hyperion Shield visual accessory, no stat changes"
 22,Vladof,SMG,86,Manufacturer Part,VLA_SM.part_mag_torgue_normal_beegun,"Torgue Impact Gyrojets, For Birt's Bees"
 22,Vladof,SMG,87,Barrel,VLA_SM.part_barrel_beegun,"Birt's Bees, 528 DMG, 73% Acc, 12.4/s Fire Rate"
+22,Vladof,SMG,89,Manufacturer Part,VLA_SM.part_mag_torgue_sticky_mercury,"Torgue Sticky Gyrojets"
+22,Vladof,SMG,90,Manufacturer Part,VLA_SM.part_mag_torgue_normal_mercury,"Torgue Impact Gyrojets"
+22,Vladof,SMG,91,Barrel,VLA_SM.part_barrel_mercury,"Mercurious,1562 Damage,71% Acc,4.3/s FR,2 Shot"
 16,Vladof,Sniper,1,Barrel,VLA_SR.part_barrel_02_finnty,"Finnity XXX-L, 937 DMG, 94% Acc, 13.0/s FR, 50% Crit DMG"
 16,Vladof,Sniper,2,Body,VLA_SR.part_body,"No stat changes, always present"
 16,Vladof,Sniper,3,Body Accessory,VLA_SR.part_body_d,No Stat Changes

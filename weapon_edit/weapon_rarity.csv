@@ -7,6 +7,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,Stat,De
 13,Daedalus,Assault Rifle,73,Rarity,Legendary,Star Helix
 13,Daedalus,Assault Rifle,85,Rarity,Legendary,First Impression
 13,Daedalus,Assault Rifle,100,Rarity,Legendary,Oscar Mike
+13,Daedalus,Assault Rifle,83,Rarity,Legendary,Mercredi
 2,Daedalus,Pistol,95,Rarity,Common,
 2,Daedalus,Pistol,96,Rarity,Uncommon,
 2,Daedalus,Pistol,97,Rarity,Rare,
@@ -40,6 +41,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,Stat,De
 3,Jakobs,Pistol,78,Rarity,Legendary,Phantom Flame
 3,Jakobs,Pistol,79,Rarity,Legendary,San Saba Songbird
 3,Jakobs,Pistol,81,Rarity,Legendary,Seventh Sense
+3,Jakobs,Pistol,83,Rarity,Legendary,Shalashaska
 9,Jakobs,Shotgun,95,Rarity,Common,
 9,Jakobs,Shotgun,96,Rarity,Uncommon,
 9,Jakobs,Shotgun,97,Rarity,Rare,
@@ -48,6 +50,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,Stat,De
 9,Jakobs,Shotgun,83,Rarity,Legendary,Hellwalker
 9,Jakobs,Shotgun,85,Rarity,Legendary,Rainbow Vomit
 9,Jakobs,Shotgun,91,Rarity,Legendary,T.K's Wave
+9,Jakobs,Shotgun,100,Rarity,Legendary,Doeshot
 24,Jakobs,Sniper,95,Rarity,Common,
 24,Jakobs,Sniper,96,Rarity,Uncommon,
 24,Jakobs,Sniper,97,Rarity,Rare,
@@ -70,6 +73,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,Stat,De
 21,Maliwan,SMG,60,Rarity,Legendary,Ohm I Got
 21,Maliwan,SMG,63,Rarity,Legendary,Plasma Coil
 21,Maliwan,SMG,83,Rarity,Legendary,Matador's Match
+21,Maliwan,SMG,81,Rarity,Legendary,Broken Wings
 25,Maliwan,Sniper,95,Rarity,Common,
 25,Maliwan,Sniper,96,Rarity,Uncommon,
 25,Maliwan,Sniper,97,Rarity,Rare,
@@ -77,6 +81,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,Stat,De
 25,Maliwan,Sniper,59,Rarity,Legendary,Complex Root
 25,Maliwan,Sniper,61,Rarity,Legendary,Katagawa's Revenge
 25,Maliwan,Sniper,80,Rarity,Legendary,Asher's Rise
+25,Maliwan,Sniper,82,Rarity,Legendary,Conflux
 15,Order,Assault Rifle,95,Rarity,Common,
 15,Order,Assault Rifle,96,Rarity,Uncommon,
 15,Order,Assault Rifle,97,Rarity,Rare,
@@ -90,6 +95,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,Stat,De
 4,Order,Pistol,53,Rarity,Legendary,Lucky Clover
 4,Order,Pistol,76,Rarity,Legendary,Bully
 4,Order,Pistol,80,Rarity,Legendary,Noisy Cricket
+4,Order,Pistol,85,Rarity,Legendary,Roulette
 26,Order,Sniper,95,Rarity,Common,
 26,Order,Sniper,96,Rarity,Uncommon,
 26,Order,Sniper,97,Rarity,Rare,
@@ -104,6 +110,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,Stat,De
 7,Ripper,Shotgun,19,Rarity,Legendary,Golden God
 7,Ripper,Shotgun,20,Rarity,Legendary,Goremaster
 7,Ripper,Shotgun,100,Rarity,Legendary,Convergence
+7,Ripper,Shotgun,56,Rarity,Legendary,Hair Trigger
 19,Ripper,SMG,95,Rarity,Common,
 19,Ripper,SMG,96,Rarity,Uncommon,
 19,Ripper,SMG,97,Rarity,Rare,
@@ -118,6 +125,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,Stat,De
 23,Ripper,Sniper,19,Rarity,Legendary,Stray
 23,Ripper,Sniper,1,Rarity,Legendary,Vamoose
 23,Ripper,Sniper,57,Rarity,Legendary,Rainmaker
+23,Ripper,Sniper,56,Rarity,Legendary,Tankbuster
 14,Tediore,Assault Rifle,89,Rarity,Common,
 14,Tediore,Assault Rifle,90,Rarity,Uncommon,
 14,Tediore,Assault Rifle,91,Rarity,Rare,
@@ -125,6 +133,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,Stat,De
 14,Tediore,Assault Rifle,35,Rarity,Legendary,Chuck
 14,Tediore,Assault Rifle,36,Rarity,Legendary,Divided Focus
 14,Tediore,Assault Rifle,77,Rarity,Legendary,Murmur
+14,Tediore,Assault Rifle,79,Rarity,Legendary,Laser Disker
 5,Tediore,Pistol,95,Rarity,Common,
 5,Tediore,Pistol,96,Rarity,Uncommon,
 5,Tediore,Pistol,97,Rarity,Rare,
@@ -140,6 +149,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,Stat,De
 11,Tediore,Shotgun,76,Rarity,Legendary,Anarchy
 11,Tediore,Shotgun,78,Rarity,Legendary,Forsaken Chaos
 11,Tediore,Shotgun,80,Rarity,Legendary,Husky Friend
+11,Tediore,Shotgun,82,Rarity,Legendary,Eigenburst
 17,Torgue,Assault Rifle,95,Rarity,Common,
 17,Torgue,Assault Rifle,96,Rarity,Uncommon,
 17,Torgue,Assault Rifle,97,Rarity,Rare,
@@ -147,6 +157,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,Stat,De
 17,Torgue,Assault Rifle,1,Rarity,Legendary,Bugbear
 17,Torgue,Assault Rifle,56,Rarity,Legendary,Cold Shoulder
 17,Torgue,Assault Rifle,78,Rarity,Legendary,Potato Thrower IV
+17,Torgue,Assault Rifle,83,Rarity,Legendary,Fleabag
 6,Torgue,Pistol,95,Rarity,Common,
 6,Torgue,Pistol,96,Rarity,Uncommon,
 6,Torgue,Pistol,97,Rarity,Rare,
@@ -154,12 +165,14 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,Stat,De
 6,Torgue,Pistol,1,Rarity,Legendary,Roach
 6,Torgue,Pistol,53,Rarity,Legendary,Queen's Rest
 6,Torgue,Pistol,59,Rarity,Legendary,Hardpoint
+6,Torgue,Pistol,78,Rarity,Legendary,Handcannon
 12,Torgue,Shotgun,95,Rarity,Common,
 12,Torgue,Shotgun,96,Rarity,Uncommon,
 12,Torgue,Shotgun,97,Rarity,Rare,
 12,Torgue,Shotgun,98,Rarity,Epic,
 12,Torgue,Shotgun,1,Rarity,Legendary,Linebacker
 12,Torgue,Shotgun,57,Rarity,Legendary,Lead Balloon
+12,Torgue,Shotgun,79,Rarity,Legendary,ARC-TAN
 18,Vladof,Assault Rifle,95,Rarity,Common,
 18,Vladof,Assault Rifle,96,Rarity,Uncommon,
 18,Vladof,Assault Rifle,97,Rarity,Rare,
@@ -168,6 +181,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,Stat,De
 18,Vladof,Assault Rifle,65,Rarity,Legendary,Wombo Combo
 18,Vladof,Assault Rifle,88,Rarity,Legendary,Aegon's Dream
 18,Vladof,Assault Rifle,93,Rarity,Legendary,Whiskey Foxtrot
+18,Vladof,Assault Rifle,100,Rarity,Legendary,Bubbles
 22,Vladof,SMG,95,Rarity,Common,
 22,Vladof,SMG,96,Rarity,Uncommon,
 22,Vladof,SMG,97,Rarity,Rare,
@@ -175,6 +189,7 @@ Manufacturer & Weapon Type ID,Manufacturer,Weapon Type,Part ID,Part Type,Stat,De
 22,Vladof,SMG,1,Rarity,Legendary,Onslaught
 22,Vladof,SMG,67,Rarity,Legendary,Kaoson
 22,Vladof,SMG,88,Rarity,Legendary,Birt's Bees
+22,Vladof,SMG,92,Rarity,Legendary,Mercurious
 16,Vladof,Sniper,95,Rarity,Common,
 16,Vladof,Sniper,96,Rarity,Uncommon,
 16,Vladof,Sniper,97,Rarity,Rare,

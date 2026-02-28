@@ -31,6 +31,8 @@ Manufacturer ID,Part_ID,Part_type,Stat,Description
 287,8,Rarity,Legendary,Timekeeper's New skin
 287,9,Legendary Perk,Bininu,"While equipped, gain +7436 Max Health, regenerate +372 Health/s, and reduce Damage Taken by 33%"
 287,10,Model,/,
+287,11,Rarity,Legendary,Hopscotch skin
+287,12,Legendary Perk,Shook,Spawns a Singularity when an Armor Segment breaks
 293,1,Legendary Perk,Glass,"When damaged, gain a stack of Determination. Each stack reduces Damage Taken by 2%, max 25 stacks. When Energy Shield breaks, release a Star Burst dealing 7436 Damage, increased by +20% per stack of Determination"
 293,2,Legendary Perk,Direct Current,"Toggle via Ground Slam. When active, continuously drains Shield to gain +40% Bonus Shock Damage, but incoming Damage bypasses Shield"
 293,3,Rarity,Legendary,Protean Cell skin
