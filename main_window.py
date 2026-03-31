@@ -260,7 +260,9 @@ class BatchAddWorker(QObject):
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.current_language = 'zh-CN'
+        from PyQt6.QtCore import QSettings
+        self._settings = QSettings('SuperExboom', 'BL4SaveEditor')
+        self.current_language = self._settings.value('language', 'zh-CN')
         self._load_localization()
         
         # Initialize theme manager
@@ -342,6 +344,21 @@ class MainWindow(QMainWindow):
         self.size_grip.setFixedSize(20, 20)
         
         self._add_tabs()
+
+        # If saved language differs from default (zh-CN), sync backend + all tabs
+        if self.current_language != 'zh-CN':
+            bl4f.set_language(self.current_language)
+            for tab in [
+                self.selector_page, self.character_tab, self.items_tab,
+                self.converter_tab, self.yaml_editor_tab, self.class_mod_tab,
+                self.enhancement_tab, self.weapon_editor_tab,
+                self.weapon_generator_tab, self.grenade_tab, self.shield_tab,
+                self.repkit_tab, self.heavy_weapon_tab, self.loadout_manager_tab
+            ]:
+                if hasattr(tab, 'update_language'):
+                    tab.update_language(self.current_language)
+            self.update_ui_text()
+
         self.scan_for_saves()
         self.update_action_states()
     
@@ -1057,6 +1074,7 @@ class MainWindow(QMainWindow):
 
         print(f"DEBUG: change_language started. New: {lang_code}")
         self.current_language = lang_code
+        self._settings.setValue('language', lang_code)
         
         # Update backend localization
         bl4f.set_language(self.current_language)
@@ -1103,6 +1121,9 @@ class MainWindow(QMainWindow):
         self.save_as_action.setText(self.loc['menu']['save_as'])
         self.status_label.setText(self.loc['status']['welcome'])
         self.lang_button.setText(self._get_lang_button_text())
+        # Update tooltips for theme and background buttons
+        self.theme_button.setToolTip(self._get_theme_tooltip())
+        self.bg_button.setToolTip(self.loc.get('header', {}).get('change_bg', 'Change Background'))
         
         # Update tab titles
         tab_keys = [
