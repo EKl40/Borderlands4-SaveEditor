@@ -247,6 +247,8 @@ class SaveGameController:
         if not isinstance(root_node, dict):
             root_node = self.yaml_obj
 
+        data["is_profile_save"] = unlock_logic.is_profile_save(self.yaml_obj)
+
         data["名称"] = str(root_node.get("char_name", ""))
         data["难度"] = str(root_node.get("player_difficulty", ""))
 
@@ -441,22 +443,26 @@ class SaveGameController:
             elif preset_name == "unlock_postgame":
                 unlock_logic.unlock_postgame(data)
             elif preset_name == "unlock_max_everything":
-                # Implement the combo manually or add a helper in unlock_logic
-                # Based on JS:
-                unlock_logic.max_ammo(data)
-                unlock_logic.max_currency(data)
-                unlock_logic.clear_map_fog(data)
-                unlock_logic.discover_all_locations(data)
-                unlock_logic.complete_all_collectibles(data)
-                unlock_logic.complete_all_achievements(data)
-                unlock_logic.complete_all_missions(data)
-                unlock_logic.set_max_sdu(data)
-                unlock_logic.unlock_vault_powers(data)
-                unlock_logic.unlock_postgame(data)
-                unlock_logic.unlock_all_hover_drives(data)
-                unlock_logic.unlock_all_specialization(data)
-                unlock_logic.complete_all_challenges(data)
-                unlock_logic.set_character_to_max_level(data)
+                if unlock_logic.is_profile_save(data):
+                    unlock_logic.clear_map_fog(data)
+                    unlock_logic.discover_all_locations(data)
+                    unlock_logic.complete_all_safehouse_missions(data)
+                    unlock_logic.complete_all_missions(data)
+                    unlock_logic.complete_all_collectibles(data)
+                    unlock_logic.set_max_sdu(data)
+                    unlock_logic.unlock_vault_powers(data)
+                    unlock_logic.unlock_all_hover_drives(data)
+                else:
+                    unlock_logic.max_ammo(data)
+                    unlock_logic.max_currency(data)
+                    unlock_logic.complete_all_collectibles(data)
+                    unlock_logic.complete_all_achievements(data)
+                    unlock_logic.complete_all_missions(data)
+                    unlock_logic.unlock_vault_powers(data)
+                    unlock_logic.unlock_postgame(data)
+                    unlock_logic.unlock_all_specialization(data)
+                    unlock_logic.complete_all_challenges(data)
+                    unlock_logic.set_character_to_max_level(data)
             else:
                 print(f"Unknown preset: {preset_name}")
                 return False

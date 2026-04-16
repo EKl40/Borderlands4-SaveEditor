@@ -138,8 +138,8 @@
     "groups": {
       "character_info": "Персонаж (Info)",
       "currency": "Валюта (Currency)",
-      "world_presets": "Мир (World)",
-      "char_presets": "Персонаж (Presets)"
+      "world_presets": "Пресеты Profile / Shared",
+      "char_presets": "Пресеты персонажа"
     },
     "labels": {
       "name": "Имя:",
@@ -150,7 +150,12 @@
       "spec_points": "Очки специализации:",
       "money": "Деньги:",
       "eridium": "Эридий:",
-      "xp_auto_hint": "Введите целевой уровень для автоматического расчёта необходимого опыта"
+      "xp_auto_hint": "Введите целевой уровень для автоматического расчёта необходимого опыта",
+      "profile_only_hint": "Только для Profile. В обычном сохранении персонажа кнопки будут неактивны.",
+      "character_only_hint": "Только для сохранения персонажа. В Profile кнопки будут неактивны.",
+      "preset_mode_profile": "Тип сохранения: Profile. Пресеты Profile активны, пресеты персонажа отключены.",
+      "preset_mode_character": "Тип сохранения: персонаж. Пресеты персонажа активны, пресеты Profile отключены.",
+      "preset_credit": "Thanks to iyre for preset data! If you like it, support the web save editor: iyre.github.io/bl4-save-tools/"
     },
     "buttons": {
       "apply_changes": "Применить изменения персонажа и валюты",

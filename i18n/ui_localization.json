@@ -138,8 +138,8 @@
     "groups": {
       "character_info": "角色",
       "currency": "货币",
-      "world_presets": "世界 (World)",
-      "char_presets": "角色 (Character)"
+      "world_presets": "Profile/共享预设",
+      "char_presets": "角色存档预设"
     },
     "labels": {
       "name": "名称:",
@@ -150,7 +150,12 @@
       "spec_points": "专精点数:",
       "money": "金钱:",
       "eridium": "镒矿:",
-      "xp_auto_hint": "输入你所目标的等级，则可自动化完成经验值计算"
+      "xp_auto_hint": "输入你所目标的等级，则可自动化完成经验值计算",
+      "profile_only_hint": "仅 Profile 存档可用；普通角色存档会自动灰置。",
+      "character_only_hint": "仅普通角色存档可用；Profile 存档会自动灰置。",
+      "preset_mode_profile": "当前存档类型：Profile。Profile 预设可用，角色预设已灰置。",
+      "preset_mode_character": "当前存档类型：普通角色存档。角色预设可用，Profile 预设已灰置。",
+      "preset_credit": "感谢 iyre 的 preset 数据！喜欢的话可以去 iyre.github.io/bl4-save-tools/ 支持他的网页存档编辑器"
     },
     "buttons": {
       "apply_changes": "应用角色与货币更改",

@@ -1,6 +1,8 @@
 import base64
 import zlib
 import yaml
+import sys
+from pathlib import Path
 
 # --- Compressed Blobs from blobs.js ---
 
@@ -39,7 +41,29 @@ def load_array_blob(blob_str):
         return decompressed_text.split(',')
     return []
 
+def _load_project_blob(filename: str, fallback: str) -> str:
+    """Load compressed blob from core/data, fallback to inlined constant."""
+    if getattr(sys, 'frozen', False):
+        # PyInstaller runtime: resources are unpacked under _MEIPASS.
+        path = Path(sys._MEIPASS) / "core" / "data" / filename
+    else:
+        # Dev runtime: data lives next to this module in core/data.
+        path = Path(__file__).resolve().parent / "data" / filename
+    if path.exists():
+        try:
+            text = path.read_text(encoding='utf-8').strip()
+            if text:
+                return text
+        except Exception:
+            pass
+    return fallback
+
 # --- Loaded Data ---
+
+COLLECTIBLES_COMPRESSED = _load_project_blob("collectibles_compressed.txt", COLLECTIBLES_COMPRESSED)
+MISSIONSETS_COMPRESSED = _load_project_blob("missions_compressed.txt", MISSIONSETS_COMPRESSED)
+UNLOCKABLES_COMPRESSED = _load_project_blob("unlockables_compressed.txt", UNLOCKABLES_COMPRESSED)
+LOCATIONS_COMPRESSED = _load_project_blob("locations_compressed.txt", LOCATIONS_COMPRESSED)
 
 COLLECTIBLES = load_yaml_blob(COLLECTIBLES_COMPRESSED)
 MISSIONSETS = load_yaml_blob(MISSIONSETS_COMPRESSED)
@@ -65,6 +89,10 @@ CHARACTER_CLASSES = {
   "ExoSoldier": {
     "name": "Rafa",
     "class": "Exo-Soldier",
+  },
+  "RoboDealer": {
+    "name": "C4SH",
+    "class": "Rogue (Paid DLC)",
   },
 }
 

@@ -56,6 +56,12 @@ for file_path in glob.glob('i18n/*'):
     if file_path.endswith('.json'):
         i18n_files.append((file_path, 'i18n'))
 
+# 动态收集core/data目录下的解锁数据文件
+core_data_files = []
+for file_path in glob.glob('core/data/*'):
+    if file_path.endswith('.txt') or file_path.endswith('.json') or file_path.endswith('.csv'):
+        core_data_files.append((file_path, 'core/data'))
+
 # 收集assets目录下的资源文件
 assets_files = [
     ('assets/stylesheet.qss', 'assets'),
@@ -82,7 +88,7 @@ a = Analysis(
         ('class_mods/Harlowe/*.png', 'class_mods/Harlowe'),
         ('class_mods/Rafa/*.png', 'class_mods/Rafa'),
         ('class_mods/Vex/*.png', 'class_mods/Vex'),
-    ] + {enhancement_files} + {weapon_files} + {grenade_files} + {shield_files} + {repkit_files} + {heavy_files} + {loadout_files} + {i18n_files} + {assets_files},
+    ] + {enhancement_files} + {weapon_files} + {grenade_files} + {shield_files} + {repkit_files} + {heavy_files} + {loadout_files} + {i18n_files} + {core_data_files} + {assets_files},
     hiddenimports=[
         'PIL',
         'pandas',

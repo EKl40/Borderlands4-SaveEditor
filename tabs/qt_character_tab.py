@@ -50,6 +50,7 @@ class QtCharacterTab(QWidget):
         self.ui_groups = {}
         self.world_btns_widgets = [] # store (action, widget)
         self.char_btns_widgets = []
+        self.is_profile_save = False
 
         # --- UI元素直接定义为实例属性 ---
         self.name_edit = QLineEdit(self)
@@ -133,9 +134,14 @@ class QtCharacterTab(QWidget):
         main_layout.addWidget(self.ui_labels['sync_warning'])
 
         # --- 解锁预设区域 ---
+        self.ui_labels['preset_mode_hint'] = QLabel(self)
+        self.ui_labels['preset_mode_hint'].setStyleSheet("color: #f0c674; font-weight: 600;")
+        self.ui_labels['preset_mode_hint'].setWordWrap(True)
+        main_layout.addWidget(self.ui_labels['preset_mode_hint'])
+
         presets_layout = QHBoxLayout()
         
-        # --- 世界预设 ---
+        # --- Profile/Shared 预设 ---
         self.ui_groups['world_presets'] = QGroupBox(self.loc['groups']['world_presets'])
         world_layout = QVBoxLayout(self.ui_groups['world_presets'])
         
@@ -144,10 +150,9 @@ class QtCharacterTab(QWidget):
             ("discover_locs", self.loc['presets']['discover_locs'], "discover_all_locations"),
             ("unlock_safehouses", self.loc['presets']['unlock_safehouses'], "complete_all_safehouse_missions"),
             ("unlock_collectibles", self.loc['presets']['unlock_collectibles'], "complete_all_collectibles"),
-            ("complete_challenges", self.loc['presets']['complete_challenges'], "complete_all_challenges"),
-            ("complete_achievements", self.loc['presets']['complete_achievements'], "complete_all_achievements"),
-            ("skip_story", self.loc['presets']['skip_story'], "complete_all_story_missions"),
-            ("skip_all", self.loc['presets']['skip_all'], "complete_all_missions"),
+            ("max_sdu", self.loc['presets']['max_sdu'], "set_max_sdu"),
+            ("unlock_vault", self.loc['presets']['unlock_vault'], "unlock_vault_powers"),
+            ("unlock_vehicles", self.loc['presets']['unlock_vehicles'], "unlock_all_hover_drives"),
         ]
         
         for key, label, action in world_buttons:
@@ -155,22 +160,27 @@ class QtCharacterTab(QWidget):
             btn.clicked.connect(lambda checked, a=action: self.unlock_requested.emit(a, {}))
             world_layout.addWidget(btn)
             self.world_btns_widgets.append((key, btn))
+
+        self.ui_labels['profile_only_hint'] = QLabel(self.loc['labels']['profile_only_hint'])
+        self.ui_labels['profile_only_hint'].setStyleSheet("color: #9aa0a6; font-size: 11px;")
+        self.ui_labels['profile_only_hint'].setWordWrap(True)
+        world_layout.addWidget(self.ui_labels['profile_only_hint'])
             
         presets_layout.addWidget(self.ui_groups['world_presets'])
         
-        # --- 角色预设 ---
+        # --- 角色存档预设 ---
         self.ui_groups['char_presets'] = QGroupBox(self.loc['groups']['char_presets'])
         char_layout = QVBoxLayout(self.ui_groups['char_presets'])
         
         char_buttons = [
             ("change_class", self.loc['presets']['change_class'], "change_class_popup"),
             ("max_level", self.loc['presets']['max_level'], "set_character_to_max_level"),
-            ("max_sdu", self.loc['presets']['max_sdu'], "set_max_sdu"),
-            ("unlock_vault", self.loc['presets']['unlock_vault'], "unlock_vault_powers"),
-            ("unlock_vehicles", self.loc['presets']['unlock_vehicles'], "unlock_all_hover_drives"),
+            ("complete_challenges", self.loc['presets']['complete_challenges'], "complete_all_challenges"),
+            ("complete_achievements", self.loc['presets']['complete_achievements'], "complete_all_achievements"),
+            ("skip_story", self.loc['presets']['skip_story'], "complete_all_story_missions"),
+            ("skip_all", self.loc['presets']['skip_all'], "complete_all_missions"),
             ("unlock_specs", self.loc['presets']['unlock_specs'], "unlock_all_specialization"),
             ("unlock_uvhm", self.loc['presets']['unlock_uvhm'], "unlock_postgame"),
-            ("unlock_max", self.loc['presets']['unlock_max'], "unlock_max_everything"),
         ]
         
         for key, label, action in char_buttons:
@@ -181,16 +191,21 @@ class QtCharacterTab(QWidget):
                 btn.clicked.connect(lambda checked, a=action: self.unlock_requested.emit(a, {}))
             char_layout.addWidget(btn)
             self.char_btns_widgets.append((key, btn))
+
+        self.ui_labels['character_only_hint'] = QLabel(self.loc['labels']['character_only_hint'])
+        self.ui_labels['character_only_hint'].setStyleSheet("color: #9aa0a6; font-size: 11px;")
+        self.ui_labels['character_only_hint'].setWordWrap(True)
+        char_layout.addWidget(self.ui_labels['character_only_hint'])
             
         presets_layout.addWidget(self.ui_groups['char_presets'])
         
         main_layout.addLayout(presets_layout)
-
-        # 游戏大更新后预设功能暂时失效，隐藏预设区域
-        self.ui_groups['world_presets'].setVisible(False)
-        self.ui_groups['char_presets'].setVisible(False)
+        self._apply_preset_button_state()
 
     def _show_change_class_popup(self):
+        if self.is_profile_save:
+            return
+
         dialog = QDialog(self)
         dialog.setWindowTitle(self.loc['dialogs']['change_class_title'])
         layout = QVBoxLayout(dialog)
@@ -222,8 +237,17 @@ class QtCharacterTab(QWidget):
         else:
             # Fallback
             self.loc = {
-                "groups": {"character_info": "Character", "currency": "Currency", "world_presets": "World", "char_presets": "Character"},
-                "labels": {"name": "Name:", "difficulty": "Difficulty:", "level": "Level:", "xp": "XP:", "spec_level": "Spec Level:", "spec_points": "Spec Points:", "money": "Money:", "eridium": "Eridium:", "xp_auto_hint": "Enter your target level to auto-calculate the required XP"},
+                "groups": {"character_info": "Character", "currency": "Currency", "world_presets": "Profile / Shared", "char_presets": "Character Save"},
+                "labels": {
+                    "name": "Name:", "difficulty": "Difficulty:", "level": "Level:", "xp": "XP:",
+                    "spec_level": "Spec Level:", "spec_points": "Spec Points:", "money": "Money:", "eridium": "Eridium:",
+                    "xp_auto_hint": "Enter your target level to auto-calculate the required XP",
+                    "profile_only_hint": "Profile save only. Disabled on character saves.",
+                    "character_only_hint": "Character save only. Disabled on profile saves.",
+                    "preset_mode_profile": "Current save type: Profile. Profile presets enabled, character presets disabled.",
+                    "preset_mode_character": "Current save type: Character save. Character presets enabled, profile presets disabled.",
+                    "preset_credit": "Thanks to iyre for preset data! If you like it, support the web save editor: iyre.github.io/bl4-save-tools/"
+                },
                 "buttons": {"apply_changes": "Apply Changes", "sync_levels": "Sync Item Levels"},
                 "warnings": {"sync_warning": "Warning: May unequip items."},
                 "presets": {"clear_fog": "Clear Fog", "discover_locs": "Discover Locations", "unlock_safehouses": "Unlock Safehouses", 
@@ -234,6 +258,22 @@ class QtCharacterTab(QWidget):
                             "unlock_uvhm": "Unlock UVHM", "unlock_max": "Unlock Max"},
                 "dialogs": {"change_class_title": "Change Class", "select_class": "Select Class:"}
             }
+
+        self.loc.setdefault("groups", {})
+        self.loc.setdefault("labels", {})
+        self.loc.setdefault("buttons", {})
+        self.loc.setdefault("warnings", {})
+        self.loc.setdefault("presets", {})
+        self.loc.setdefault("dialogs", {})
+
+        self.loc["groups"].setdefault("world_presets", "Profile / Shared")
+        self.loc["groups"].setdefault("char_presets", "Character Save")
+
+        self.loc["labels"].setdefault("profile_only_hint", "Profile save only. Disabled on character saves.")
+        self.loc["labels"].setdefault("character_only_hint", "Character save only. Disabled on profile saves.")
+        self.loc["labels"].setdefault("preset_mode_profile", "Current save type: Profile. Profile presets enabled, character presets disabled.")
+        self.loc["labels"].setdefault("preset_mode_character", "Current save type: Character save. Character presets enabled, profile presets disabled.")
+        self.loc["labels"].setdefault("preset_credit", "Thanks to iyre for preset data! If you like it, support the web save editor: iyre.github.io/bl4-save-tools/")
 
     def update_language(self, lang):
         print(f"DEBUG: Updating language for {self.__class__.__name__} to {lang}...")
@@ -257,6 +297,8 @@ class QtCharacterTab(QWidget):
         self.ui_labels['money'].setText(self.loc['labels']['money'])
         self.ui_labels['eridium'].setText(self.loc['labels']['eridium'])
         self.ui_labels['sync_warning'].setText(self.loc['warnings']['sync_warning'])
+        self.ui_labels['profile_only_hint'].setText(self.loc['labels']['profile_only_hint'])
+        self.ui_labels['character_only_hint'].setText(self.loc['labels']['character_only_hint'])
         
         # Buttons
         self.ui_buttons['apply_changes'].setText(self.loc['buttons']['apply_changes'])
@@ -268,12 +310,35 @@ class QtCharacterTab(QWidget):
             
         for key, btn in self.char_btns_widgets:
             btn.setText(self.loc['presets'][key])
+
+        self._apply_preset_button_state()
         print(f"DEBUG: Finished updating language for {self.__class__.__name__}.")
+
+    def _apply_preset_button_state(self):
+        for _, btn in self.world_btns_widgets:
+            btn.setEnabled(self.is_profile_save)
+
+        for _, btn in self.char_btns_widgets:
+            btn.setEnabled(not self.is_profile_save)
+
+        if self.is_profile_save:
+            mode_text = self.loc['labels']['preset_mode_profile']
+        else:
+            mode_text = self.loc['labels']['preset_mode_character']
+
+        credit_text = self.loc['labels'].get('preset_credit', '').strip()
+        if credit_text:
+            self.ui_labels['preset_mode_hint'].setText(f"{mode_text}\n{credit_text}")
+        else:
+            self.ui_labels['preset_mode_hint'].setText(mode_text)
 
     def update_fields(self, data: Dict[str, Any]):
         """用从控制器获取的数据填充UI字段。"""
         if not data:
             return
+
+        self.is_profile_save = bool(data.get("is_profile_save", False))
+        self._apply_preset_button_state()
 
         self.cur_paths = data.get('cur_paths', {})
         self.name_edit.setText(data.get("名称", ""))

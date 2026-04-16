@@ -1,5 +1,6 @@
 import uuid
 import copy
+import re
 from .unlock_data import (
     COLLECTIBLES, MISSIONSETS, UNLOCKABLES, LOCATIONS,
     CHARACTER_CLASSES, MAX_LEVEL, SAFEHOUSE_SILO_LOCATIONS
@@ -17,13 +18,38 @@ def get_or_create_list(d, key):
         d[key] = []
     return d[key]
 
+def is_profile_save(data):
+    local = data.get('domains', {}).get('local', {})
+    return isinstance(local, dict) and 'shared' in local
+
+def get_profile_local(data):
+    domains = get_or_create_dict(data, 'domains')
+    return get_or_create_dict(domains, 'local')
+
+def merge_profile_unlockable_entries(data, key, prefix=''):
+    local = get_profile_local(data)
+    unlockables = get_or_create_dict(local, 'unlockables')
+    section = get_or_create_dict(unlockables, key)
+    existing = get_or_create_list(section, 'entries')
+
+    template = UNLOCKABLES.get(key, {})
+    template_entries = template.get('entries', []) if isinstance(template, dict) else []
+
+    merged = set(existing)
+    for entry in template_entries:
+        if isinstance(entry, str) and entry.startswith(prefix):
+            merged.add(entry)
+
+    section['entries'] = sorted(list(merged), key=lambda x: x.lower())
+
 # --- Exploration Logic ---
 
 def clear_map_fog(data):
     levelnames = [
         'Intro_P', 'World_P', 'Vault_Grasslands_P', 'Fortress_Grasslands_P',
         'Vault_ShatteredLands_P', 'Fortress_Shatteredlands_P', 'Vault_Mountains_P',
-        'Fortress_Mountains_P', 'ElpisElevator_P', 'Elpis_P', 'UpperCity_P'
+        'Fortress_Mountains_P', 'ElpisElevator_P', 'Elpis_P', 'UpperCity_P',
+        'Raid1_P', 'Banjo_P', 'Cello_P', 'Cowbell_P', 'VaultoftheDamned_P'
     ]
     common_fields = {
         'foddimensionx': 128,
@@ -32,7 +58,11 @@ def clear_map_fog(data):
         'foddata': 'eJztwTEBAAAAwqD+qWcMH6AAAAAAAAAAAAAAAAAAAACAtwGw2cOy',
     }
 
-    gbx = get_or_create_dict(data, 'gbx_discovery_pc')
+    if is_profile_save(data):
+        local = get_profile_local(data)
+        gbx = get_or_create_dict(local, 'gbx_discovery_pc_shared')
+    else:
+        gbx = get_or_create_dict(data, 'gbx_discovery_pc')
     foddatas = get_or_create_list(gbx, 'foddatas')
 
     for levelname in levelnames:
@@ -54,7 +84,8 @@ def visit_all_worlds(data):
     worldlist = [
         'Intro_P', 'World_P', 'Fortress_Grasslands_P', 'Vault_Grasslands_P',
         'Fortress_Shatteredlands_P', 'Vault_ShatteredLands_P', 'Fortress_Mountains_P',
-        'Vault_Mountains_P', 'ElpisElevator_P', 'Elpis_P', 'UpperCity_P'
+        'Vault_Mountains_P', 'ElpisElevator_P', 'Elpis_P', 'UpperCity_P',
+        'Raid1_P', 'Banjo_P', 'Cello_P', 'Cowbell_P', 'VaultoftheDamned_P'
     ]
     regionlist = [
         'KairosGeneric', 'grasslands_Prison', 'grasslands_RegionA', 'grasslands_RegionB',
@@ -64,11 +95,18 @@ def visit_all_worlds(data):
         'shatteredlands_Fortress', 'shatteredlands_Vault', 'mountains_RegionA',
         'mountains_RegionB', 'mountains_RegionC', 'mountains_RegionD', 'mountains_RegionE',
         'Mountains_Fortress', 'Mountains_Vault', 'elpis_elevator', 'elpis', 'city_RegionA',
-        'city_RegionB', 'city_RegionC', 'city_Upper'
+        'city_RegionB', 'city_RegionC', 'city_Upper', 'Loader', 'Banjo', 'Raid1',
+        'Cello', 'Cowbell', 'Cowbell_CrookedTeeth', 'Cowbell_Speakeasy',
+        'Cowbell_BloodstainedHollow', 'Cowbell_WindsweptWastes', 'Cowbell_Feuermann',
+        'Cowbell_VaultOfTheDamned'
     ]
     regionlist.sort(key=lambda x: x.lower())
 
-    gbx = get_or_create_dict(data, 'gbx_discovery_pc')
+    if is_profile_save(data):
+        local = get_profile_local(data)
+        gbx = get_or_create_dict(local, 'gbx_discovery_pc_shared')
+    else:
+        gbx = get_or_create_dict(data, 'gbx_discovery_pc')
     metrics = get_or_create_dict(gbx, 'metrics')
     
     hasseenworldlist = get_or_create_list(metrics, 'hasseenworldlist')
@@ -84,13 +122,12 @@ def visit_all_worlds(data):
     metrics['hasseenregionlist'] = sorted(hasseenregionlist, key=lambda x: x.lower())
 
 def add_discovered_locations(data, location_substrings):
-    pg = get_or_create_dict(data, 'gbx_discovery_pg')
+    if is_profile_save(data):
+        local = get_profile_local(data)
+        pg = get_or_create_dict(local, 'gbx_discovery_pg_shared')
+    else:
+        pg = get_or_create_dict(data, 'gbx_discovery_pg')
     existing_blob = pg.get('dlblob', '')
-    # Python split might behave differently with regex, approximating JS logic
-    # existing = existingBlob.split(/:\d:/).filter(Boolean);
-    # The separator seems to be :1:, :2:, etc. LOCATIONS are strings.
-    # JS logic: split by /:\d:/
-    import re
     existing = [x for x in re.split(r':\d:', existing_blob) if x]
     
     merged = set(existing)
@@ -104,7 +141,8 @@ def add_discovered_locations(data, location_substrings):
 
 def discover_all_locations(data):
     add_discovered_locations(data, [''])
-    complete_discovery_achievements(data)
+    if not is_profile_save(data):
+        complete_discovery_achievements(data)
 
 def discover_safehouse_locations(data):
     prefix = 'DLMD_World_P_PoAActor_UAID_'
@@ -131,6 +169,14 @@ def update_stats_counters(data, counters, category='challenge'):
                 cat_dict[key] = value
 
 def complete_all_collectibles(data):
+    if is_profile_save(data):
+        for key in ['echo_log_challenges', 'sharedprogress_cello']:
+            merge_profile_unlockable_entries(data, key)
+        merge_profile_unlockable_entries(data, 'echo_upgrade_challenges', 'echo_upgrade_challenges.collect')
+        merge_profile_unlockable_entries(data, 'sharedprogress_cowbell', 'SharedProgress_Cowbell.collectible')
+        update_sdu_points(data)
+        return
+
     stats = get_or_create_dict(data, 'stats')
     openworld = get_or_create_dict(stats, 'openworld')
     collectibles = get_or_create_dict(openworld, 'collectibles')
@@ -155,6 +201,10 @@ def complete_all_collectibles(data):
     update_sdu_points(data)
 
 def unlock_vault_powers(data):
+    if is_profile_save(data):
+        merge_profile_unlockable_entries(data, 'vault_object_challenges')
+        return
+
     stats = get_or_create_dict(data, 'stats')
     openworld = get_or_create_dict(stats, 'openworld')
     collectibles = get_or_create_dict(openworld, 'collectibles')
@@ -165,7 +215,7 @@ def unlock_vault_powers(data):
 
 def unlock_postgame(data):
     globals_ = get_or_create_dict(data, 'globals')
-    globals_['highest_unlocked_vault_hunter_level'] = 5
+    globals_['highest_unlocked_vault_hunter_level'] = 6
     globals_['vault_hunter_level'] = 1
     
     complete_uvh_challenges(data)
@@ -205,6 +255,13 @@ def merge_missionsets_with_prefix(data, prefix):
         local_sets[key] = copy.deepcopy(value)
 
 def complete_all_missions(data):
+    if is_profile_save(data):
+        merge_profile_unlockable_entries(data, 'echo_upgrade_challenges', 'echo_upgrade_challenges.activity')
+        merge_profile_unlockable_entries(data, 'sharedprogress_cowbell', 'SharedProgress_Cowbell.zoneactivity')
+        discover_safehouse_locations(data)
+        update_sdu_points(data)
+        return
+
     merge_missionsets_with_prefix(data, 'missionset_')
     stage_epilogue_mission(data)
     set_story_values(data)
@@ -218,6 +275,13 @@ def complete_all_story_missions(data):
     set_story_values(data)
 
 def complete_all_safehouse_missions(data):
+    if is_profile_save(data):
+        merge_profile_unlockable_entries(data, 'echo_upgrade_challenges', 'echo_upgrade_challenges.activity_safehouses')
+        merge_profile_unlockable_entries(data, 'echo_upgrade_challenges', 'echo_upgrade_challenges.activity_silos')
+        discover_safehouse_locations(data)
+        update_sdu_points(data)
+        return
+
     merge_missionsets_with_prefix(data, 'missionset_zoneactivity_safehouse')
     merge_missionsets_with_prefix(data, 'missionset_zoneactivity_silo')
     discover_safehouse_locations(data)
@@ -272,6 +336,33 @@ def open_all_vault_doors(data):
 # --- Progression Logic ---
 
 def update_sdu_points(data):
+    if is_profile_save(data):
+        entries = data.get('domains', {}).get('local', {}).get('unlockables', {}).get('echo_upgrade_challenges', {}).get('entries', [])
+        value_map = {
+            'activity': 40,
+            'collect_propaspeakers': 20,
+            'collect_capsules': 15,
+            'collect_evocariums': 15,
+            'collect_shrines': 10,
+            'collect_caches': 10,
+            'collect_safes': 10,
+            'collect_vaultsymbols': 5,
+        }
+
+        point_total = 0
+        for type_name, value in value_map.items():
+            prefix = f"echo_upgrade_challenges.{type_name}_"
+            count = sum(1 for entry in entries if isinstance(entry, str) and entry.startswith(prefix))
+            point_total += count * value
+
+        local = get_profile_local(data)
+        progression_shared = get_or_create_dict(local, 'progression_shared')
+        point_pools = get_or_create_dict(progression_shared, 'point_pools')
+        old_total = point_pools.get('echotokenprogresspoints', 0)
+        if point_total > old_total:
+            point_pools['echotokenprogresspoints'] = point_total
+        return
+
     point_total = 0
     activity_points = 40
     activity_names = [
@@ -394,7 +485,7 @@ def set_character_level(data, level):
     # Hardcoded XP values for known level caps
     level_xp_map = {
         50: 3430227,
-        60: 7897915,
+        60: 5714893,
     }
     xp = level_xp_map.get(level, 0)
 
@@ -427,7 +518,12 @@ def set_character_class(data, class_key, char_name=None):
     state['char_guid'] = uuid.uuid4().hex.upper()
 
 def set_max_sdu(data):
-    progression = get_or_create_dict(data, 'progression')
+    if is_profile_save(data):
+        local = get_profile_local(data)
+        progression = get_or_create_dict(local, 'progression_shared')
+    else:
+        progression = get_or_create_dict(data, 'progression')
+
     graphs = get_or_create_list(progression, 'graphs')
     point_pools = get_or_create_dict(progression, 'point_pools')
     
@@ -473,6 +569,10 @@ def set_max_sdu(data):
     point_pools['echotokenprogresspoints'] = max(old_points, total_points)
 
 def unlock_all_hover_drives(data):
+    if is_profile_save(data):
+        merge_profile_unlockable_entries(data, 'unlockable_hoverdrives')
+        return
+
     unlockables_dict = get_or_create_dict(data, 'unlockables')
     hover_drives = get_or_create_dict(unlockables_dict, 'unlockable_hoverdrives')
     existing = get_or_create_list(hover_drives, 'entries')
